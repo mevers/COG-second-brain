@@ -399,7 +399,7 @@ tags: ["#consolidation", "#knowledge", "#frameworks"]
 - **Frameworks updated:** [number]
 - **New frameworks created:** [number]
 - **Timeline entries added:** [number]
-- **Archive actions taken:** [number]
+- **Guidance superseded in place:** [number]
 
 ---
 
@@ -531,16 +531,17 @@ tags: ["#consolidation", "#knowledge", "#frameworks"]
 - ✅ Created new framework: [name]
 - ✅ Documented pattern: [name]
 - ✅ Added timeline entry: [topic]
-- ✅ Archived outdated insights: [list]
+- ✅ Marked superseded guidance: [list]
 
-### Archive Actions
+### Lifecycle Updates
 **Braindumps Processed:**
-- Updated metadata from `status: "captured"` to `status: "consolidated"`
+- Preserved existing metadata and prior consolidation backlinks
 - Added consolidation references: `consolidated_in: "[[consolidation-YYYY-MM-DD]]"`
 
 **Superseded Content:**
-- Archived: [list of old framework versions or outdated insights]
-- Location: `00-inbox/archive/`
+- Retained at original paths: [old guidance and replacement links]
+- Set `content_status: "superseded"` and `superseded_by` on replaced notes
+- Set `content_status: "outdated"` without `superseded_by` when no replacement exists
 
 ---
 

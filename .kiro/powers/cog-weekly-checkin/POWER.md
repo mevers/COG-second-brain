@@ -9,6 +9,12 @@ keywords: ["weekly checkin", "weekly check-in", "weekly review", "reflect on my 
 
 Comprehensive weekly review and analysis integrating insights across all domains (personal, professional, projects) with pattern recognition and strategic planning.
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/weekly-checkin/SKILL.md`.
+
+Include relevant domain notes, project plans/resources and knowledge/booklets; exclude pending input and `.sources/` originals. Use project lifecycle and `content_status` for active/current views: exclude `outdated` as current evidence and follow `superseded_by` for `superseded` notes. Missing status is unassessed.
+
+Use the profile to identify projects, but use `project_status` on the project overview to decide activity. Exclude completed/abandoned projects from active review even if the profile lists them as active; retain historical context. Clarify missing or conflicting status.
+
 ## When This Power Activates
 
 - User wants to do their weekly review
@@ -17,7 +23,7 @@ Comprehensive weekly review and analysis integrating insights across all domains
 
 ## Pre-Flight Check
 
-1. Check for `00-inbox/MY-PROFILE.md`
+1. Check for `config/MY-PROFILE.md`
 2. If found: Use name for personalization, reference active projects
 
 ## Process Flow
@@ -25,9 +31,9 @@ Comprehensive weekly review and analysis integrating insights across all domains
 ### 1. Gather Context
 
 Scan recent files from the past week:
-- Daily briefs in `01-daily/briefs/`
+- Daily briefs in `01-updates/briefs/`
 - Braindumps in `02-personal/`, `03-professional/`, `04-projects/*/braindumps/`
-- Previous check-ins in `01-daily/checkins/`
+- Previous check-ins in `01-updates/checkins/`
 
 ### 2. Guided Reflection
 
@@ -73,7 +79,7 @@ Create structured document with:
 
 ## Output Location
 
-`01-daily/checkins/weekly-checkin-YYYY-MM-DD.md`
+`01-updates/checkins/weekly-checkin-YYYY-MM-DD.md`
 
 ## Conversational Guidelines
 

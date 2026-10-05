@@ -1,11 +1,13 @@
 # COG URL Dump Playbook
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/url-dump/SKILL.md`.
+
 ## Goal
 Transform URLs into structured knowledge entries with automatic content extraction, insights, and categorization.
 
 ## Pre-Flight
-1. Read `00-inbox/MY-PROFILE.md` for interests, projects, agent_mode
-2. Read `00-inbox/MY-INTERESTS.md` for relevance assessment
+1. Read `config/MY-PROFILE.md` for interests, projects, agent_mode
+2. Read `config/MY-INTERESTS.md` for relevance assessment
 
 ## Steps
 
@@ -40,7 +42,7 @@ Generate:
 ### 5. Save
 **Standard** → `05-knowledge/booklets/[category]/[title-slug]-YYYY-MM-DD.md`
 **Project-specific** → `04-projects/[project-slug]/resources/[title-slug].md`
-**Unclear** → `00-inbox/[title-slug].md`
+**Unresolved:** keep the original input pending with a reason; no completed mixed-domain note.
 
 File format:
 ```yaml

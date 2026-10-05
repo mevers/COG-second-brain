@@ -2,6 +2,18 @@
 
 All notable changes to COG (Cognition + Obsidian + Git) will be documented in this file.
 
+## [4.0.0] - 2026-10-06
+
+Redesigned vault structure. This changes configuration and update-document paths; existing workspaces are not converted automatically.
+
+- Keep persistent preferences in `config/`, pending captures in `00-inbox/`, and dated briefings, reflections and work logs in `01-updates/`.
+- File unrelated subjects separately; retain a connected thought in one primary domain or project.
+- Retain outdated and replaced content in place using `content_status: current/outdated/superseded`; use `superseded_by` only for replaced content. Memory-hygiene proposes these metadata updates instead of archival.
+- Update affected skills, native agent instructions, templates and generated packages. Keep the existing update mechanism, pointed at this fork.
+- Preserve upstream installation options; consistently exclude completed projects from active review and retain unfinished URL input in the inbox.
+
+No new installation, migration or rollback tooling is included.
+
 ## [3.15.0] - 2026-10-02
 
 ### Added

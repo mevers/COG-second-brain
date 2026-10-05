@@ -1,6 +1,6 @@
 ---
 name: memory-hygiene
-description: Periodic trust sweep of persistent memory and durable knowledge notes - re-verifies environment-dependent claims against the live environment, stamps last_verified + confidence, and proposes archiving drifted entries
+description: Periodic trust sweep of persistent memory and durable knowledge notes - re-verifies environment-dependent claims against the live environment, stamps last_verified + confidence, and proposes marking obsolete entries with content_status
 roles: [all]
 integrations: []
 ---
@@ -50,38 +50,41 @@ Never spend more than ~1 minute per entry. This is hygiene, not an investigation
 
 ## Stamping
 
+Use the same `content_status` as consolidated notes and other knowledge notes. Keep the entry at its existing path. `current` means still applicable; `outdated` means no longer accurate or applicable without a replacement; `superseded` means a specific note replaces it. Add `superseded_by: "[[replacement-note]]"` only for `superseded`. These are top-level frontmatter keys; retain the existing nested verification fields below. Missing status means unassessed. Do not stamp every note or infer outdated status from age or a failed lookup alone.
+
 After checking an entry, update its frontmatter `metadata:` block in place (do not touch body text unless fixing a verified-wrong fact):
 
 ```yaml
+content_status: current  # only when checked and still applicable
 metadata:
   type: reference
   last_verified: 2026-07-10
   confidence: high   # high = verified now | medium = unverifiable cheaply | low = partially drifted
 ```
 
-- Verified clean → `confidence: high`, stamp date.
-- Unverifiable cheaply → keep prior confidence (or `medium`), stamp date.
+- Verified clean → `confidence: high`, stamp date. For an assessed entry still in use, set `content_status: current`. A historically correct entry may still have been replaced: do not automatically clear `outdated`/`superseded` or its replacement link merely because a lookup succeeds; propose any restoration for approval.
+- Unverifiable cheaply → keep prior confidence (or `medium`) and content status unchanged, stamp date.
 - Partially drifted → fix the drifted fact directly in the body (reviewable via the report); set `confidence: low` only if unsure the fix is complete.
-- Fully obsolete → **propose archive, don't delete.** List it in the report's "Propose archive" section; only archive after the user confirms.
+- Fully obsolete → propose `content_status: outdated` when no replacement exists, or `content_status: superseded` with a verified `superseded_by` link when another note replaces it. Apply the proposal only after user approval. Keep the entry in place; do not archive or delete it. When an approved status becomes `current` or `outdated`, remove any no-longer-applicable `superseded_by` field.
 
 ## The Loop (see /loop-engineering)
 
-Scan-until-done over the entry list with a per-entry budget guard (~1 min). The deterministic verifier is the environment itself (`test -e`, `curl`, `gh`) — never the agent's own recollection of whether something "should" still exist. Human escalation: all deletions/archives.
+Scan-until-done over the entry list with a per-entry budget guard (~1 min). The deterministic verifier is the environment itself (`test -e`, `curl`, `gh`) — never the agent's own recollection of whether something "should" still exist. User approval: proposed changes to outdated/superseded status and any restoration to current.
 
 ## Report (single file)
 
-Write one report per sweep to `01-daily/YYYY-MM-DD-memory-hygiene.md`, structured around four evolution questions:
+Write one report per sweep to `01-updates/YYYY-MM-DD-memory-hygiene.md`, structured around four evolution questions:
 
 1. **What persists?** — counts by type (user/feedback/project/reference).
 2. **What updated?** — entries whose body was corrected, with old → new.
-3. **What is measured?** — scorecard: `verified / unverifiable / drifted / propose-archive` counts, plus deltas vs the previous sweep report (the drift *trend* is the longitudinal signal one-shot checks miss).
+3. **What is measured?** — scorecard: `verified / unverifiable / drifted / proposed-status-change` counts, plus deltas vs the previous sweep report (the drift *trend* is the longitudinal signal one-shot checks miss).
 4. **What is auditable?** — every change in this sweep is a line in this report; for stores Git does not track, the report IS the audit trail.
 
-End the report with a **Propose archive** section (explicit list, one line of evidence each) and a **Waiting on you** line if anything needs a decision.
+End the report with a **Proposed content-status changes** section (explicit list, one line of evidence each) and a **Waiting on you** line if anything needs a decision.
 
 ## Rules
 
-- Propose-only for deletions/archives; direct-apply for stamps and verified factual corrections.
+- Propose-only for outdated/superseded markings or restoring those entries to current; direct-apply for verification stamps and verified factual corrections. No archive moves or deletions.
 - Never rewrite an entry's voice or restructure it during a sweep.
 - If the memory index points at renamed/missing files, fix the index.
 - Keep the sweep itself out of memory: the report file is the record.

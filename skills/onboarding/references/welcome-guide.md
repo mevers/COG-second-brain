@@ -1,6 +1,6 @@
 # Welcome guide template
 
-Verbatim markdown template for `00-inbox/WELCOME-TO-COG.md`, generated in onboarding Step 8 (Create Welcome Guide).
+Verbatim markdown template for `config/WELCOME-TO-COG.md`, generated in onboarding Step 8 (Create Welcome Guide).
 
 ```markdown
 ---
@@ -53,7 +53,7 @@ Here are COG's core skills available to everyone:
 You can change these anytime by editing [[MY-INTEGRATIONS]].
 
 [If no integrations configured:]
-No integrations configured yet. COG works great standalone — add integrations anytime by editing `00-inbox/MY-INTEGRATIONS.md`.
+No integrations configured yet. COG works great standalone — add integrations anytime by editing `config/MY-INTEGRATIONS.md`.
 
 ## Quick Start
 
@@ -120,5 +120,5 @@ Check your current version: `cat COG-VERSION`
 
 ---
 
-*You can archive or delete this welcome guide once you're comfortable with COG.*
+*You can keep or delete this welcome guide once you're comfortable with COG.*
 ```

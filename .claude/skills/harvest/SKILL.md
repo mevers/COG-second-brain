@@ -52,7 +52,7 @@ Only after approval: write durable files. Update `05-knowledge/lizard/index.md`.
 
 ## Phase 3 — Retro line
 
-One line to `01-daily/journal/<today>.md`:
+One line to `01-updates/journal/<today>.md`:
 
 ```
 Harvest: <n> staged, <m> promoted, <k> folded

@@ -1,10 +1,12 @@
 # COG Braindump Playbook
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/braindump/SKILL.md`.
+
 ## Goal
 Capture raw thoughts and transform them into structured, classified intelligence.
 
 ## Pre-Flight
-1. Read `00-inbox/MY-PROFILE.md` for name, role, projects, agent_mode
+1. Read `config/MY-PROFILE.md` for name, role, projects, agent_mode
 2. Read `03-professional/COMPETITIVE-WATCHLIST.md` for tracked entities
 3. If no profile exists, suggest running `/onboarding` first
 
@@ -18,7 +20,7 @@ Analyze content and classify into:
 - **Personal** → `02-personal/braindumps/`
 - **Professional** → `03-professional/braindumps/`
 - **Project-specific** → `04-projects/[project-slug]/braindumps/`
-- **Mixed/unclear** → `00-inbox/`
+- **Connected cross-domain thought** → one primary domain/project home with relevant links; unresolved input stays pending.
 
 ### 3. Extract & Analyze
 From the raw input, extract:

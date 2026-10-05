@@ -32,7 +32,7 @@ mkdir -p .claude/skills/templates/{project-intelligence,content-publisher}
 
 # Create vault directory structure
 mkdir -p 00-inbox
-mkdir -p 01-daily/{briefs,checkins}
+mkdir -p 01-updates/{briefs,checkins}
 mkdir -p 02-personal/{braindumps,goals,knowledge,resources}
 mkdir -p 03-professional/{braindumps,knowledge,meetings,resources}
 mkdir -p 04-projects/_project-template/{braindumps,competitive,knowledge,meetings}

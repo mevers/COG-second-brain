@@ -15,7 +15,7 @@ integrations: [github, linear, slack, posthog]
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — use the full parallel agent execution strategy below (5 agents). This skill benefits greatly from team mode.
 - If `agent_mode: solo` — run a lighter version: collect GitHub + Linear data sequentially, skip PostHog deep analysis, produce a single combined report instead of 3 documents.
 

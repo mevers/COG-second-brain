@@ -7,6 +7,8 @@ integrations: [web-fetch]
 
 # COG URL Dump Skill
 
+The filing and retention instructions below apply to both full-checkout and selected-skill installations.
+
 ## Purpose
 Transform raw URLs into structured, insightful knowledge entries through intelligent content extraction, categorization, and integration with the user's knowledge base. Quick capture with automatic insight generation.
 
@@ -18,7 +20,7 @@ Transform raw URLs into structured, insightful knowledge entries through intelli
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — delegate content extraction, analysis, and categorization to a sub-agent while handling user interaction directly. The sub-agent fetches URL content, generates insights, and returns structured results for filing.
 - If `agent_mode: solo` (default) — handle everything directly in the conversation. No delegation.
 
@@ -26,7 +28,7 @@ Transform raw URLs into structured, insightful knowledge entries through intelli
 
 **Before executing, check for user profile:**
 
-1. Look for `00-inbox/MY-PROFILE.md` in the vault
+1. Look for `config/MY-PROFILE.md` in the vault
 2. If NOT found:
    ```
    Welcome to COG! It looks like this is your first time.
@@ -41,6 +43,9 @@ Transform raw URLs into structured, insightful knowledge entries through intelli
    - Check for existing booklet categories in `05-knowledge/booklets/`
 
 ## Process Flow
+
+Preserve exact user annotations, full source URLs, and supplied capture IDs/timestamps separately from interpretation. Each unrelated URL gets its own resource entry. Do not infer personal activity from a saved resource.
+
 
 ### 1. User Interaction & Input Collection
 - Accept URL(s) from the user (single URL or batch)
@@ -196,7 +201,8 @@ confidence: "[high|medium|low]"
 Save to appropriate location:
 - **Standard:** `05-knowledge/booklets/[category-slug]/[title-slug]-YYYY-MM-DD.md`
 - **Project-specific:** `04-projects/[project-slug]/resources/[title-slug]-YYYY-MM-DD.md`
-- **Mixed/Unclear:** `00-inbox/url-[title-slug]-YYYY-MM-DD.md`
+- **Cross-domain resource:** choose its primary knowledge category or project; link other relevant contexts.
+- **Unresolved/blocked:** keep the original input pending in `00-inbox/` with a reason; do not file it as a completed mixed note.
 
 ### 6. Tool/Resource Special Handling
 
@@ -395,7 +401,7 @@ reviewed: "false"
 - **High Confidence (90%+):** Clear content with obvious categorization
 - **Medium Confidence (70-89%):** Generally clear with some ambiguity
 - **Low Confidence (50-69%):** Significant ambiguity requiring user input
-- **Very Low Confidence (<50%):** Major uncertainty, save to inbox
+- **Very Low Confidence (<50%):** Leave the original input pending in the inbox and tell the user why processing could not be completed. Do not create a completed note there.
 
 Always explicitly state confidence levels and reasoning in processing notes.
 
@@ -403,7 +409,7 @@ Always explicitly state confidence levels and reasoning in processing notes.
 
 URL capture is a **fetch-retry loop with a quality gate**, not a single fetch-and-file. See `.claude/skills/loop-engineering/SKILL.md` for the shared vocabulary.
 
-**The loop (per URL):** fetch → if the fetch fails or returns an empty/blocked body, retry a different way (https vs http, reader mode, an archive snapshot) → once content is present, run the quality gate → file it, or escalate to the user / save to inbox with a Review Needed flag.
+**The loop (per URL):** fetch → if the fetch fails or returns an empty/blocked body, retry a different way (https vs http, reader mode, an archive snapshot) → once content is present, run the quality gate → file it, or escalate to the user / retain pending input in the inbox with a blocked reason.
 
 **The verifier (deterministic):**
 - Fetch returned a non-empty body (not a paywall stub or error page).
@@ -413,7 +419,7 @@ URL capture is a **fetch-retry loop with a quality gate**, not a single fetch-an
 
 **Termination conditions (layered):**
 - **Goal met:** content extracted and the quality gate passes → save to the category folder.
-- **Retry cap:** stop after ~3 fetch attempts → save what was extracted with a low-confidence flag (see Uncertainty Handling), do not invent missing fields.
+- **Retry cap:** stop after ~3 fetch attempts → keep input pending with the limitation (see Uncertainty Handling); do not invent missing fields. A limited bookmark is complete only if it satisfies the user’s request.
 - **Hard stop on paywall / login wall:** note the limitation, capture the available preview, do not loop forever.
 - **Human escalation:** confidence below threshold → present the best guess and ask the user to confirm category, rather than filing it wrong.
 

@@ -7,6 +7,8 @@ integrations: []
 
 # COG Braindump Skill
 
+The filing and retention instructions below apply to both full-checkout and selected-skill installations.
+
 ## Purpose
 Transform raw thoughts into strategic intelligence through quick capture, systematic analysis, pattern recognition, and domain-aware insight extraction with minimal user friction.
 
@@ -18,7 +20,7 @@ Transform raw thoughts into strategic intelligence through quick capture, system
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — delegate research, analysis, and writing subtasks to specialist sub-agents (e.g., use Task tool to delegate deep analysis, competitive intel extraction, or pattern recognition to separate agents). Combine results before presenting to user.
 - If `agent_mode: solo` (default) — handle everything directly in the conversation. No delegation.
 
@@ -26,7 +28,7 @@ Transform raw thoughts into strategic intelligence through quick capture, system
 
 **Before executing, check for user profile:**
 
-1. Look for `00-inbox/MY-PROFILE.md` in the vault
+1. Look for `config/MY-PROFILE.md` in the vault
 2. If NOT found:
    ```
    Welcome to COG! It looks like this is your first time.
@@ -56,6 +58,9 @@ Transform raw thoughts into strategic intelligence through quick capture, system
 - Accept any format - no judgment, no filtering
 
 ### 2. Domain Classification
+
+Split unrelated subjects into separate notes; do not treat the submission as one document. Keep a connected thought together. External resources use url-dump; retain distinct personal observations as linked braindumps. If a primary home cannot be determined, leave the input pending with a reason.
+
 Ask user to classify or auto-detect based on content:
 
 **If user profile exists with projects:**
@@ -64,9 +69,9 @@ Ask user to classify or auto-detect based on content:
 - **Project-Specific:** Related to specific projects
   - If MY-PROFILE.md lists projects, offer: "Which project? [list project names]"
   - Example: "Which project? (1) SaaS Product, (2) Book Writing, (3) Health App"
-- **Mixed/Unclear:** Spans multiple areas
+- **Connected cross-domain thought:** Choose one primary personal, professional or project home and link relevant contexts.
 
-**If no profile:** Use standard personal/professional/mixed classification
+**If no profile:** Use personal/professional classification, or an explicitly identified project
 
 ### 3. Content Analysis and Processing
 
@@ -110,12 +115,12 @@ If COMPETITIVE-WATCHLIST.md exists:
 
 ### 4. Generate Structured Output
 
-Create braindump file with this structure:
+Create one braindump per coherent subject using this structure. Preserve each subject’s original text exactly, separately from interpretation. Use only sections supported by that subject; the template does not require inventing themes or actions:
 
 ```markdown
 ---
 type: "braindump"
-domain: "[personal|professional|project-specific|mixed]"
+domain: "[personal|professional|project-specific]"
 project: "[project-name]" # Only if project-specific
 date: "YYYY-MM-DD"
 created: "YYYY-MM-DD HH:MM"
@@ -214,7 +219,7 @@ Save to appropriate location:
 - **Personal:** `02-personal/braindumps/braindump-YYYY-MM-DD-HHMM-<slug>.md`
 - **Professional:** `03-professional/braindumps/braindump-YYYY-MM-DD-HHMM-<slug>.md`
 - **Project:** `04-projects/[project-slug]/braindumps/braindump-YYYY-MM-DD-HHMM-<slug>.md`
-- **Mixed:** `00-inbox/braindump-YYYY-MM-DD-HHMM-<slug>.md`
+- **Unresolved:** retain pending input with a concrete reason; never save a processed mixed-domain note in the inbox or journal.
 
 ### 5. Competitive Intelligence Extraction
 

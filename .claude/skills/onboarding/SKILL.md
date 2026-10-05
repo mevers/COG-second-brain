@@ -7,6 +7,8 @@ integrations: []
 
 # COG Onboarding Skill
 
+The filing and retention instructions below apply to both full-checkout and selected-skill installations.
+
 ## Purpose
 Welcome new users and collect essential information to personalize their COG experience. All configuration is stored as natural markdown files within the vault structure, following COG's philosophy of transparent, editable knowledge.
 
@@ -43,7 +45,7 @@ Let's get you set up. Tell me a bit about yourself - your name, what you do, and
 
 ### 2. Check for Existing Profile
 
-Look for `00-inbox/MY-PROFILE.md`. If it exists:
+Look for `config/MY-PROFILE.md`. If it exists:
 ```
 I found an existing COG profile! What would you like to update? Just tell me what you'd like to change - your interests, projects, profile info, or anything else.
 ```
@@ -145,7 +147,7 @@ After role pack matching, set up the user's integration preferences:
    - Additional services they mention → add to **Active** section
    - Always add `ElevenLabs` to **Disabled** unless explicitly requested
 
-3. Generate `00-inbox/MY-INTEGRATIONS.md`:
+3. Generate `config/MY-INTEGRATIONS.md`:
    ```markdown
    ---
    type: integrations
@@ -179,9 +181,9 @@ After role pack matching, set up the user's integration preferences:
 
 Create the four profile documents using the templates in `references/profile-templates.md`.
 
-#### `00-inbox/MY-PROFILE.md`
+#### `config/MY-PROFILE.md`
 
-#### `00-inbox/MY-INTERESTS.md`
+#### `config/MY-INTERESTS.md`
 
 #### `03-professional/COMPETITIVE-WATCHLIST.md` (only if they mentioned companies/people to track)
 
@@ -192,42 +194,33 @@ Based on configuration, create personalized structure:
 
 **Base Structure (Always):**
 ```
+config/
 00-inbox/
-01-daily/
+01-updates/
   briefs/
   checkins/
 02-personal/
   braindumps/
-  development/
-  wellness/
 03-professional/
   braindumps/
-  leadership/
-  strategy/
-  skills/
 04-projects/
 05-knowledge/
   consolidated/
   patterns/
   timeline/
   booklets/
-06-templates/
 ```
 
 **Project-Specific (For each listed project):**
 ```
 04-projects/[project-slug]/
   PROJECT-OVERVIEW.md
-  braindumps/
-  competitive/
-  content/
-  planning/
-  resources/
+  # Create braindumps/, competitive/, planning/, resources/ or content/ when used.
 ```
 
 ### 8. Create Welcome Guide
 
-Generate: `00-inbox/WELCOME-TO-COG.md`
+Generate: `config/WELCOME-TO-COG.md`
 
 Generate it from the template in `references/welcome-guide.md`.
 
@@ -256,9 +249,9 @@ Then intelligently handle whatever they say - whether it's adding projects, chan
 ## Success Criteria
 
 Onboarding is successful when:
-1. `MY-PROFILE.md` created in `00-inbox/` with `role_pack` in frontmatter
-2. `MY-INTERESTS.md` created in `00-inbox/`
-3. `MY-INTEGRATIONS.md` created in `00-inbox/` with active/disabled sections
+1. `MY-PROFILE.md` created in `config/` with `role_pack` in frontmatter
+2. `MY-INTERESTS.md` created in `config/`
+3. `MY-INTEGRATIONS.md` created in `config/` with active/disabled sections
 4. Role pack matched (or set to `custom`) and recommendations presented
 5. Project directories and overviews created (if applicable)
 6. `WELCOME-TO-COG.md` guide created with role-specific skill ordering
@@ -269,7 +262,7 @@ Onboarding is successful when:
 **If profile already exists:**
 - Don't overwrite, offer update mode instead
 - Preserve existing content, only append/modify requested sections
-- Archive old version to `00-inbox/archive/MY-PROFILE-YYYY-MM-DD.md` if starting fresh
+- Do not archive configuration automatically; change only the sections the user requests.
 
 **If directory creation fails:**
 - Report which directories couldn't be created
@@ -284,9 +277,9 @@ Onboarding is successful when:
 ## Privacy & Data
 
 All configuration data is stored as markdown files in:
-- `00-inbox/MY-PROFILE.md` - Basic profile with role pack
-- `00-inbox/MY-INTERESTS.md` - Interest areas
-- `00-inbox/MY-INTEGRATIONS.md` - Active/disabled external service integrations
+- `config/MY-PROFILE.md` - Basic profile with role pack
+- `config/MY-INTERESTS.md` - Interest areas
+- `config/MY-INTEGRATIONS.md` - Active/disabled external service integrations
 - `03-professional/COMPETITIVE-WATCHLIST.md` - Competitive tracking
 - `04-projects/[project]/PROJECT-OVERVIEW.md` - Project details
 
@@ -296,7 +289,7 @@ Benefits of markdown storage:
 - Searchable in Obsidian
 - Linkable from other notes
 - No parsing required, just read as text
-- Can be archived, moved, organized like any other note
+- Remain user-editable in `config/`; no automatic archival
 
 ## Philosophy
 

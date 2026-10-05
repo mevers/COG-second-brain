@@ -15,7 +15,7 @@ integrations: []
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — use the full parallel agent execution strategy below (3 agents)
 - If `agent_mode: solo` — process sequentially: extract content first, then analyze dynamics, then enrich with context.
 

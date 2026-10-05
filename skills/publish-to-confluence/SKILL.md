@@ -15,7 +15,7 @@ integrations: [confluence]
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — no significant benefit for this skill (single sequential operation)
 - If `agent_mode: solo` — standard execution
 
@@ -23,7 +23,7 @@ integrations: [confluence]
 
 ## Pre-Flight Check
 
-1. **Read `00-inbox/MY-INTEGRATIONS.md`** — Confluence MUST be listed under Active Integrations
+1. **Read `config/MY-INTEGRATIONS.md`** — Confluence MUST be listed under Active Integrations
    - If Confluence is **not active**: Inform the user and stop.
      ```
      Confluence is not in your active integrations.
@@ -52,7 +52,7 @@ Read the specified file from the vault.
 **Option B: User describes the document**
 ```
 Search for matching files:
-1. Glob for likely matches in 04-projects/, 05-knowledge/, 01-daily/
+1. Glob for likely matches in 04-projects/, 05-knowledge/, 01-updates/
 2. Present candidates and let user choose
 ```
 

@@ -19,7 +19,7 @@ Act as the user's autonomous content creator: scout what just happened in their 
 
 ## Prerequisites
 
-Reads the user's voice and beats from `00-inbox/MY-PROFILE.md` and topics from `00-inbox/MY-INTERESTS.md`. Publishing targets come from `00-inbox/MY-INTEGRATIONS.md` — skip disabled channels silently.
+Reads the user's voice and beats from `config/MY-PROFILE.md` and topics from `config/MY-INTERESTS.md`. Publishing targets come from `config/MY-INTEGRATIONS.md` — skip disabled channels silently.
 
 ## State Files (read FIRST, update LAST — this is the dedup backbone)
 

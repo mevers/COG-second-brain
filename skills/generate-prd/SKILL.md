@@ -14,7 +14,7 @@ integrations: [confluence, notion, hackmd]
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — use parallel agents to gather context from multiple sources (existing PRDs, related issues, competitive research) while drafting
 - If `agent_mode: solo` — gather context and draft sequentially in the main conversation
 
@@ -22,13 +22,13 @@ integrations: [confluence, notion, hackmd]
 
 ## Pre-Flight Check
 
-1. **Read `00-inbox/MY-INTEGRATIONS.md`** to determine publishing options:
+1. **Read `config/MY-INTEGRATIONS.md`** to determine publishing options:
    - **Confluence** — can publish PRD to team wiki
    - **Notion** — can publish PRD to Notion workspace
    - **HackMD** — can publish PRD as shared markdown doc
    - If none active, PRD stays in the vault only (still fully useful)
 
-2. **Read `00-inbox/MY-PROFILE.md`** for:
+2. **Read `config/MY-PROFILE.md`** for:
    - Active projects
    - User's name and role (for PRD author field)
 
@@ -78,7 +78,7 @@ Return: relevant existing content, user's PRD style preferences, and any related
 ```
 Gather related issues and feature requests from active trackers.
 
-Check 00-inbox/MY-INTEGRATIONS.md for active trackers, then:
+Check config/MY-INTEGRATIONS.md for active trackers, then:
 
 If Linear is active:
 1. Use ToolSearch to load Linear tools

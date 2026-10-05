@@ -9,6 +9,8 @@ keywords: ["braindump", "brain dump", "capture thoughts", "write down ideas", "t
 
 Transform raw thoughts into strategic intelligence through quick capture, systematic analysis, pattern recognition, and domain-aware insight extraction with minimal user friction.
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/braindump/SKILL.md`.
+
 ## When This Power Activates
 
 - User wants to capture stream-of-consciousness thoughts
@@ -17,7 +19,7 @@ Transform raw thoughts into strategic intelligence through quick capture, system
 
 ## Pre-Flight Check
 
-1. Check for `00-inbox/MY-PROFILE.md`
+1. Check for `config/MY-PROFILE.md`
 2. If NOT found: Suggest running onboarding first or proceed with defaults
 3. If found: Read profile for user's name, active projects, and competitive watchlist
 
@@ -35,7 +37,7 @@ Ask user to classify or auto-detect:
 - **Personal:** Individual growth, relationships, wellness
 - **Professional:** Work, leadership, career development
 - **Project-Specific:** Offer project list from MY-PROFILE.md
-- **Mixed/Unclear:** Spans multiple areas
+- **Connected cross-domain thought:** choose one primary home; split unrelated subjects.
 
 ### 3. Content Analysis
 
@@ -75,7 +77,7 @@ Create structured braindump file with:
 - **Personal:** `02-personal/braindumps/braindump-YYYY-MM-DD-HHMM-<slug>.md`
 - **Professional:** `03-professional/braindumps/braindump-YYYY-MM-DD-HHMM-<slug>.md`
 - **Project:** `04-projects/[project-slug]/braindumps/braindump-YYYY-MM-DD-HHMM-<slug>.md`
-- **Mixed:** `00-inbox/braindump-YYYY-MM-DD-HHMM-<slug>.md`
+- **Unresolved:** keep input pending with a reason; no processed mixed-domain notes.
 
 ## Confidence Levels
 

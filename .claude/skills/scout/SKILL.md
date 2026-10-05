@@ -18,7 +18,7 @@ Lightweight URL/tool triage that sits between "ignore" and `/url-dump`. Evaluate
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — delegate vault scanning and web fetching to parallel sub-agents (one for vault search, one for content fetch/analysis). Combine results for recommendation.
 - If `agent_mode: solo` (default) — handle all scanning and analysis directly in the conversation. No delegation.
 
@@ -26,7 +26,7 @@ Lightweight URL/tool triage that sits between "ignore" and `/url-dump`. Evaluate
 
 **Before executing, check for user profile:**
 
-1. Look for `00-inbox/MY-PROFILE.md` and `00-inbox/MY-INTERESTS.md` in the vault
+1. Look for `config/MY-PROFILE.md` and `config/MY-INTERESTS.md` in the vault
 2. If NOT found:
    ```
    Welcome to COG! Scout works best with a profile for relevance matching.
@@ -36,7 +36,7 @@ Lightweight URL/tool triage that sits between "ignore" and `/url-dump`. Evaluate
 3. If found:
    - Read `MY-PROFILE.md` for active projects and role
    - Read `MY-INTERESTS.md` for topic areas
-   - Read `00-inbox/MY-INTEGRATIONS.md` for active integrations (check if `web-fetch` and `web-search` are available)
+   - Read `config/MY-INTEGRATIONS.md` for active integrations (check if `web-fetch` and `web-search` are available)
 
 ## Boundary with `/url-dump`
 

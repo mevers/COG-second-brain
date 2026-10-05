@@ -22,15 +22,15 @@ Read `COG-VERSION` in the vault root to determine the local version.
 
 ### 2. Fetch Upstream
 ```bash
-git remote get-url cog-upstream 2>/dev/null || \
-  git remote add cog-upstream https://github.com/huytieu/COG-second-brain.git
-git fetch cog-upstream main --quiet
+git remote get-url cog-fork 2>/dev/null || \
+  git remote add cog-fork https://github.com/mevers/COG-second-brain.git
+git fetch cog-fork main --quiet
 ```
 
 ### 3. Compare Versions
 ```bash
 cat COG-VERSION                           # local
-git show cog-upstream/main:COG-VERSION    # upstream
+git show cog-fork/main:COG-VERSION    # upstream
 ```
 
 If versions match, report that everything is up to date.
@@ -45,7 +45,7 @@ For each changed file, offer the user:
 
 ### 5. Apply Updates
 ```bash
-git checkout cog-upstream/main -- <file>
+git checkout cog-fork/main -- <file>
 ```
 
 ### 6. Summarize
@@ -64,6 +64,6 @@ Users can also update without an AI agent:
 ```
 
 ## Safety
-- Content folders (`00-inbox/`, `01-daily/`, `02-personal/`, etc.) are NEVER touched
+- Content folders (`00-inbox/`, `01-updates/`, `02-personal/`, etc.) are NEVER touched
 - Uses surgical `git checkout` — no merge conflicts possible
 - Backs up customized files before overwriting

@@ -1,17 +1,17 @@
 {
   "name": "cog-second-brain",
   "displayName": "COG: Agentic Second Brain",
-  "version": "3.12.0",
-  "description": "Self-evolving second brain powered by AI agents, Obsidian markdown, and Git. 33 skills, 10 agents (6 workers + 4 read-only verifiers), people CRM with tiered enrichment. Closed-loop harness release: V-model verification lifecycle with criterion-traced evidence, risk lanes, multi-session ultragoals with a north-star acceptance gate, craft skills for writing and visuals, and paired anti-slop design skills for marketing and product UI. Works with Claude Code, Cursor, Kiro, Gemini CLI, and Codex.",
+  "version": "4.0.0",
+  "description": "Self-evolving second brain powered by AI agents, Obsidian markdown, and Git. 34 skills, 10 agents (6 workers + 4 read-only verifiers), people CRM with tiered enrichment. Closed-loop harness release: V-model verification lifecycle with criterion-traced evidence, risk lanes, multi-session ultragoals with a north-star acceptance gate, craft skills for writing and visuals, and paired anti-slop design skills for marketing and product UI. Works with Claude Code, Cursor, Kiro, Gemini CLI, and Codex.",
   "author": {
     "name": "Huy Tieu",
     "email": "tqhuy1991@gmail.com",
     "url": "https://github.com/huytieu"
   },
-  "homepage": "https://github.com/huytieu/COG-second-brain",
+  "homepage": "https://github.com/mevers/COG-second-brain",
   "repository": {
     "type": "git",
-    "url": "https://github.com/huytieu/COG-second-brain"
+    "url": "https://github.com/mevers/COG-second-brain"
   },
   "license": "MIT",
   "keywords": [
@@ -104,7 +104,7 @@
     {
       "name": "memory-hygiene",
       "path": ".claude/skills/memory-hygiene/SKILL.md",
-      "description": "Periodic trust sweep of persistent memory - re-verify environment-dependent claims, stamp last_verified + confidence, propose archiving drifted entries"
+      "description": "Periodic trust sweep of persistent memory - re-verify environment-dependent claims, stamp last_verified + confidence, propose marking obsolete entries with content_status"
     },
     {
       "name": "content-factory",

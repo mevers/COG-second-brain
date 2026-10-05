@@ -9,6 +9,8 @@ keywords: ["daily brief", "news", "what's happening", "morning brief", "daily ne
 
 Find verified, relevant news for personalized daily briefings with strict verification standards and strategic relevance analysis tailored to user's specific interests and projects.
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/daily-brief/SKILL.md`.
+
 ## When This Power Activates
 
 - User wants their daily news briefing
@@ -17,7 +19,7 @@ Find verified, relevant news for personalized daily briefings with strict verifi
 
 ## Pre-Flight Check
 
-1. Check for `00-inbox/MY-PROFILE.md` and `00-inbox/MY-INTERESTS.md`
+1. Check for `config/MY-PROFILE.md` and `config/MY-INTERESTS.md`
 2. If NOT found: Suggest onboarding or generate general brief
 3. If found: Read interests, profile, and competitive watchlist
 
@@ -71,7 +73,7 @@ Generate comprehensive brief with:
 
 ## Output Location
 
-`01-daily/briefs/daily-brief-YYYY-MM-DD.md`
+`01-updates/briefs/daily-brief-YYYY-MM-DD.md`
 
 ## Special Cases
 

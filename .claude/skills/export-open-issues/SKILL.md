@@ -15,7 +15,7 @@ integrations: [github, linear, jira]
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — use parallel agents to collect from all active trackers simultaneously and produce a unified report
 - If `agent_mode: solo` — collect from the primary tracker sequentially
 
@@ -23,8 +23,8 @@ integrations: [github, linear, jira]
 
 ## Pre-Flight Check
 
-1. **Read `00-inbox/MY-INTEGRATIONS.md`** to determine which trackers are active
-2. **Read `00-inbox/MY-PROFILE.md`** for active projects
+1. **Read `config/MY-INTEGRATIONS.md`** to determine which trackers are active
+2. **Read `config/MY-PROFILE.md`** for active projects
 3. **Get current timestamp:** Run `date '+%Y-%m-%d %H:%M'` using Bash
 
 4. **Ask the user** (if not already provided):
