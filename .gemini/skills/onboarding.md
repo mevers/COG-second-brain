@@ -1,5 +1,7 @@
 # COG Onboarding Playbook
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/onboarding/SKILL.md`.
+
 ## Goal
 Welcome the user and create their COG profile through natural conversation.
 
@@ -9,7 +11,7 @@ Ask open-ended questions, not option menus. Infer what you can. Never ask redund
 ## Steps
 
 ### 1. Check for Existing Profile
-- Look for `00-inbox/MY-PROFILE.md`
+- Look for `config/MY-PROFILE.md`
 - If exists: Ask "What would you like to update? Just tell me what needs changing."
 - If not: Proceed with setup below
 
@@ -35,7 +37,7 @@ During confirmation, ask:
 ### 6. Confirm and Create
 Show summary, wait for confirmation, then create:
 
-**`00-inbox/MY-PROFILE.md`** with frontmatter:
+**`config/MY-PROFILE.md`** with frontmatter:
 ```yaml
 type: profile
 created: YYYY-MM-DD
@@ -45,7 +47,7 @@ tags: ["#profile", "#config", "#cog"]
 ```
 Include: Name, Role, Profile Created date, Agent Mode setting, Active Projects (if any)
 
-**`00-inbox/MY-INTERESTS.md`** with topics and preferred sources
+**`config/MY-INTERESTS.md`** with topics and preferred sources
 
 **`03-professional/COMPETITIVE-WATCHLIST.md`** (only if they mentioned competitors)
 
@@ -53,13 +55,13 @@ Include: Name, Role, Profile Created date, Agent Mode setting, Active Projects (
 
 ### 7. Create Directory Structure
 ```
-00-inbox/, 01-daily/briefs/ + checkins/, 02-personal/braindumps/ + development/ + wellness/
-03-professional/braindumps/ + leadership/ + strategy/ + skills/
-04-projects/, 05-knowledge/consolidated/ + patterns/ + timeline/ + booklets/, 06-templates/
+config/, 00-inbox/, 01-updates/briefs/ + checkins/, 02-personal/braindumps/
+03-professional/braindumps/
+04-projects/, 05-knowledge/consolidated/ + patterns/ + timeline/ + booklets/
 ```
 
 ### 8. Create Welcome Guide
-Generate `00-inbox/WELCOME-TO-COG.md` with quick start instructions.
+Generate `config/WELCOME-TO-COG.md` with quick start instructions.
 
 ### 9. Wrap Up
 Suggest a natural next action (braindump or daily brief). No numbered menus.

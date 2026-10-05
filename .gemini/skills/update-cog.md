@@ -11,15 +11,15 @@ Update COG framework files (skills, docs, scripts) from the official upstream re
 
 ### 1. Ensure Upstream Remote
 ```bash
-git remote get-url cog-upstream 2>/dev/null || \
-  git remote add cog-upstream https://github.com/huytieu/COG-second-brain.git
-git fetch cog-upstream main --quiet
+git remote get-url cog-fork 2>/dev/null || \
+  git remote add cog-fork https://github.com/mevers/COG-second-brain.git
+git fetch cog-fork main --quiet
 ```
 
 ### 2. Compare Versions
 ```bash
 cat COG-VERSION                           # local
-git show cog-upstream/main:COG-VERSION    # upstream
+git show cog-fork/main:COG-VERSION    # upstream
 ```
 
 If versions match, tell the user everything is up to date. Done.
@@ -40,7 +40,7 @@ Ask the user:
 
 ### 5. Apply Updates
 ```bash
-git checkout cog-upstream/main -- <file>
+git checkout cog-fork/main -- <file>
 ```
 
 ### 6. Summary
@@ -59,6 +59,6 @@ Show:
 ```
 
 ## Safety Guarantees
-- Content folders (`00-inbox/`, `01-daily/`, `02-personal/`, `03-professional/`, `04-projects/`, `05-knowledge/`, `06-templates/`) are NEVER modified
+- Content folders (`config/`, `00-inbox/`, `01-updates/`, `02-personal/`, `03-professional/`, `04-projects/`, `05-knowledge/`, `06-templates/`) are NEVER modified
 - Uses `git checkout` for surgical file replacement — no merge, no rebase, zero conflict risk
 - The update script itself is a framework file and self-updates

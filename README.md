@@ -11,7 +11,7 @@
 ```mermaid
 graph LR
     A[You] -- natural language --> B[AI Agent]
-    B -- runs --> C[33 Skills]
+    B -- runs --> C[36 Skills]
     C -- delegates to --> W[6 Workers]
     C -- verified by --> V[4 Read-Only Verifiers]
     C -- reads & writes --> D[.md Files]
@@ -26,7 +26,7 @@ graph LR
 
 **1. Clone & enter the repo:**
 ```bash
-git clone https://github.com/huytieu/COG-second-brain.git
+git clone https://github.com/mevers/COG-second-brain.git
 cd COG-second-brain
 ```
 
@@ -44,7 +44,7 @@ cd COG-second-brain
 
 **Or install via [skills.sh](https://skills.sh):**
 ```bash
-npx skills add huytieu/COG-second-brain
+npx skills add mevers/COG-second-brain
 ```
 
 Done — COG is personalized and ready in ~2 minutes. See [SETUP.md](SETUP.md) for optional config (Git sync, iCloud, Obsidian Tasks, etc.).
@@ -55,9 +55,9 @@ COG ships a **full Claude Code surface**, a **full Antigravity surface**, plus *
 
 | Surface | Current support | Notes |
 |---|---|---|
-| Claude Code | 33 native skills + 10 agents (6 workers + 4 verifiers) | Full first-class surface |
-| Antigravity | 33 skills + 10 agents (pointer-stub format) | Full surface — thin stubs in `.agents/` delegate to the `.claude/` playbooks, which stay authoritative |
-| [Agent Plugins](https://agent-plugins.org) standard | Root `plugin.json` + `skills/` (33 skills) | Spec 1.0.0 conformant; any standard-aware client loads COG as a plugin |
+| Claude Code | 36 native skills + 10 agents (6 workers + 4 verifiers) | Full first-class surface |
+| Antigravity | 36 skills + 10 agents (pointer-stub format) | Full surface — thin stubs in `.agents/` delegate to the `.claude/` playbooks, which stay authoritative |
+| [Agent Plugins](https://agent-plugins.org) standard | Root `plugin.json` + `skills/` (36 skills) | Spec 1.0.0 conformant; any standard-aware client loads COG as a plugin |
 | Cursor | Plugin manifest + rules | `.cursor-plugin/plugin.json` + `.cursorrules` |
 | Kiro | 7 native powers | Core workflows today |
 | Gemini CLI | 7 native commands | Core workflows today |
@@ -115,7 +115,7 @@ Before publishing or updating framework files, run `./scripts/validate-agent-sur
 
 ### Verification Harness
 
-Opt-in. Ask for one of these and work walks a **V**: decompose left into falsifiable criteria, build at the apex, verify right with evidence traced back to each criterion. Say nothing and none of it runs: ordinary work carries no checkpoints and no evidence ledger. Turn it on per request, or by default for build tasks with `verification_harness: on` in `00-inbox/MY-PROFILE.md`. Full lifecycle in [WORKFLOW.md](WORKFLOW.md).
+Opt-in. Ask for one of these and work walks a **V**: decompose left into falsifiable criteria, build at the apex, verify right with evidence traced back to each criterion. Say nothing and none of it runs: ordinary work carries no checkpoints and no evidence ledger. Turn it on per request, or by default for build tasks with `verification_harness: on` in `config/MY-PROFILE.md`. Full lifecycle in [WORKFLOW.md](WORKFLOW.md).
 
 | Skill | What it does | Try saying... |
 |---|---|---|
@@ -232,7 +232,7 @@ graph TD
 
 ```
 COG-second-brain/
-├── .claude/skills/          # Claude Code skills (33)
+├── .claude/skills/          # Claude Code skills (36)
 ├── .claude/agents/          # Worker agent definitions (6)
 ├── .claude/roles/           # Role packs (7) — personalized recommendations
 ├── .agents/                 # Antigravity (agy CLI + IDE) — pointer stubs to .claude/
@@ -240,14 +240,14 @@ COG-second-brain/
 ├── .gemini/commands/        # Gemini CLI commands
 ├── AGENTS.md                # Universal agent docs
 ├── CLAUDE.md                # Framework instructions
-├── 00-inbox/                # Profiles, interests, integrations
-├── 01-daily/                # Briefs & check-ins
+├── config/                 # Profile, interests, integrations and welcome guide
+├── 00-inbox/                # Pending or blocked input only
+├── 01-updates/             # Briefs & check-ins
 ├── 02-personal/             # Personal braindumps (private)
 ├── 03-professional/         # Professional braindumps & strategy
 ├── 04-projects/             # Per-project tracking
-├── 05-knowledge/            # Consolidated insights & patterns
+└── 05-knowledge/            # Consolidated insights & patterns
 │   └── people/              # People CRM profiles
-└── 06-templates/            # Document templates
 ```
 
 > **Real-world results:** 120+ braindumps processed, daily briefs with 95%+ source accuracy, 5 major strategic insights discovered — zero maintenance required.
@@ -260,7 +260,7 @@ COG separates **framework files** (skills, docs, scripts) from **your content** 
 |---|---|
 | AI Agent (any) | "Update COG" or `/update-cog` |
 | Shell script | `./cog-update.sh` (interactive) &bull; `--check` &bull; `--dry-run` &bull; `--force` |
-| Manual Git | `git fetch cog-upstream main` then checkout specific files |
+| Manual Git | `git fetch cog-fork main` then checkout specific files |
 
 Check your version: `cat COG-VERSION`  
 Validate packaged surfaces: `./scripts/validate-agent-surface.sh`

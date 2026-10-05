@@ -1,3 +1,5 @@
+> Historical skill-format conversion plan.
+
 # COG Second Brain - Skills Architecture Migration Plan
 
 **Created:** 2025-10-31

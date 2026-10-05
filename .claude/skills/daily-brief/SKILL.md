@@ -7,6 +7,8 @@ integrations: [web-search]
 
 # COG Daily Brief Skill
 
+The filing and retention instructions below apply to both full-checkout and selected-skill installations.
+
 ## Purpose
 Find verified, relevant news for personalized daily briefings with strict verification standards and strategic relevance analysis tailored to user's specific interests and projects.
 
@@ -18,7 +20,7 @@ Find verified, relevant news for personalized daily briefings with strict verifi
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — delegate news research across different interest areas to parallel sub-agents (e.g., one agent per topic cluster). Each agent searches, verifies sources, and returns findings. Combine and synthesize results into the final brief.
 - If `agent_mode: solo` (default) — handle all research and synthesis directly in the conversation. No delegation.
 
@@ -26,7 +28,7 @@ Find verified, relevant news for personalized daily briefings with strict verifi
 
 **Before executing, check for user profile:**
 
-1. Look for `00-inbox/MY-PROFILE.md` and `00-inbox/MY-INTERESTS.md` in the vault
+1. Look for `config/MY-PROFILE.md` and `config/MY-INTERESTS.md` in the vault
 2. If NOT found:
    ```
    Welcome to COG! Daily briefs work best when personalized.
@@ -50,16 +52,19 @@ Find verified, relevant news for personalized daily briefings with strict verifi
 
 ## Process Flow
 
+When using project or knowledge context, inspect project overview lifecycle and `content_status`. Completed projects are historical context; follow `content_status: superseded` to its `superseded_by` replacement. Do not treat `content_status: outdated` content as current information; missing status is unassessed.
+
+
 ### 1. Gather Context
 
 Collect the information needed for personalized curation:
 
-- Read `00-inbox/MY-PROFILE.md` for:
+- Read `config/MY-PROFILE.md` for:
   - User's name
   - User's role/job
   - Active projects
 
-- Read `00-inbox/MY-INTERESTS.md` for:
+- Read `config/MY-INTERESTS.md` for:
   - Topics they're interested in
   - Preferred news sources
 
@@ -68,7 +73,7 @@ Collect the information needed for personalized curation:
 
 #### Deduplication — Previous Brief Scan
 
-Read up to 3 most recent daily briefs from `01-daily/briefs/` (most recent first):
+Read up to 3 most recent daily briefs from `01-updates/briefs/` (most recent first):
 - Extract `dedup_urls` from their frontmatter (if present)
 - Also scan their headlines/story titles as semantic fallback for cross-source matching
 - Build a set of **covered stories** to avoid repeating
@@ -355,7 +360,7 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 *Curated by COG News Curator | All news verified within 7-day freshness window | Sources cross-referenced for accuracy*
 ```
 
-Save to: `01-daily/briefs/daily-brief-YYYY-MM-DD.md`
+Save to: `01-updates/briefs/daily-brief-YYYY-MM-DD.md`
 
 ### 4. Handle Special Cases
 

@@ -9,6 +9,8 @@ keywords: ["url dump", "save this link", "bookmark this", "save for later", "sav
 
 Transform raw URLs into structured, insightful knowledge entries through intelligent content extraction, categorization, and integration with the user's knowledge base.
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/url-dump/SKILL.md`.
+
 ## When This Power Activates
 
 - User shares a URL they want to save
@@ -17,7 +19,7 @@ Transform raw URLs into structured, insightful knowledge entries through intelli
 
 ## Pre-Flight Check
 
-1. Check for `00-inbox/MY-PROFILE.md`
+1. Check for `config/MY-PROFILE.md`
 2. If found: Read interests and projects for auto-categorization
 3. Check existing categories in `05-knowledge/booklets/`
 
@@ -100,7 +102,7 @@ For tools and software, include:
 
 - **Standard:** `05-knowledge/booklets/[category-slug]/[title-slug]-YYYY-MM-DD.md`
 - **Project-specific:** `04-projects/[project-slug]/resources/[title-slug]-YYYY-MM-DD.md`
-- **Unclear:** `00-inbox/url-[title-slug]-YYYY-MM-DD.md`
+- **Unresolved:** keep original input pending with a reason; no completed mixed-domain note.
 
 ## Batch Processing
 

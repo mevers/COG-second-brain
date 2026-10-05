@@ -14,7 +14,7 @@ integrations: [linear, github, jira]
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — use parallel agents to check for duplicates across all active trackers simultaneously, then create the story
 - If `agent_mode: solo` — check duplicates and create the story sequentially in the main conversation
 
@@ -22,13 +22,13 @@ integrations: [linear, github, jira]
 
 ## Pre-Flight Check
 
-1. **Read `00-inbox/MY-INTEGRATIONS.md`** to determine which project trackers are active:
+1. **Read `config/MY-INTEGRATIONS.md`** to determine which project trackers are active:
    - **Linear** — use Linear MCP tools
    - **GitHub** — use `gh` CLI
    - **Jira** — use `jira` CLI or Jira API via WebFetch
    - If NO tracker is active, save the story as a markdown file in `04-projects/[project]/stories/` and inform the user
 
-2. **Read `00-inbox/MY-PROFILE.md`** to get:
+2. **Read `config/MY-PROFILE.md`** to get:
    - Active projects (to determine which project/repo/board to target)
    - User's name (for story author attribution)
 

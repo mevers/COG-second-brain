@@ -27,11 +27,11 @@ Before answering questions about people, projects, strategy, or decisions:
 
 ## Daily Journal
 
-Ambient, not a command. After finishing a meaningful unit of work (shipped or committed something, produced a deliverable, made a decision, hit a blocker), append one entry to `01-daily/journal/YYYY-MM-DD.md` (`date +%F`). Create the file from the template in `.claude/skills/daily-journal/SKILL.md` on the first entry of the day; append only. Skip trivia and scratch work, and do not announce the write.
+Ambient, not a command. After finishing a meaningful unit of work (shipped or committed something, produced a deliverable, made a decision, hit a blocker), append one entry to `01-updates/journal/YYYY-MM-DD.md` (`date +%F`). Create the file from the template in `.claude/skills/daily-journal/SKILL.md` on the first entry of the day; append only. Skip trivia and scratch work, and do not announce the write.
 
 ## Integration Preferences
 
-Check `00-inbox/MY-INTEGRATIONS.md` before using any external integration:
+Check `config/MY-INTEGRATIONS.md` before using any external integration:
 - Active: use normally
 - Disabled: skip silently
 - Unknown: ask the user
@@ -39,13 +39,13 @@ Check `00-inbox/MY-INTEGRATIONS.md` before using any external integration:
 ## Vault Structure
 
 ```
-00-inbox/          — Profiles, interests, integrations
-01-daily/          — Briefs and check-ins
+config/          # Profile, interests, integrations and welcome guide
+00-inbox/          # Pending or blocked input only
+01-updates/          — Briefs and check-ins
 02-personal/       — Personal braindumps (private)
 03-professional/   — Professional braindumps and strategy
 04-projects/       — Per-project tracking
 05-knowledge/      — Consolidated insights, people CRM, patterns
-06-templates/      — Document templates
 ```
 
 ## Citation Rule

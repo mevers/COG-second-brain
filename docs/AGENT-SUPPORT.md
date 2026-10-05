@@ -8,10 +8,10 @@ This document is the packaging contract: it tells contributors and maintainers w
 
 | Surface | Shipped format | Coverage | Status |
 |---|---|---:|---|
-| Claude Code | `.claude/skills/*/SKILL.md` | 33 skills | Full native surface |
-| Antigravity | `.agents/skills/*/SKILL.md` + `.agents/agents/*.md` | 33 skills + 10 agents | Full surface (pointer-stub format — delegates to `.claude/`, which stays authoritative) |
-| [Agent Plugins](https://agent-plugins.org) standard | Root `plugin.json` + `skills/` (generated mirror) | 33 skills | Spec 1.0.0 conformant; rebuild with `scripts/build-agent-plugin.sh` |
-| Universal agent docs | `AGENTS.md` | 17 commands | Full documented fallback |
+| Claude Code | `.claude/skills/*/SKILL.md` | 36 skills | Full native surface |
+| Antigravity | `.agents/skills/*/SKILL.md` + `.agents/agents/*.md` | 36 skills + 10 agents | Full surface (pointer-stub format — delegates to `.claude/`, which stays authoritative) |
+| [Agent Plugins](https://agent-plugins.org) standard | Root `plugin.json` + `skills/` (generated mirror) | 36 skills | Spec 1.0.0 conformant; rebuild with `scripts/build-agent-plugin.sh` |
+| Universal agent docs | `AGENTS.md` | 36 commands | Full documented fallback |
 | Kiro | `.kiro/powers/*/POWER.md` | 7 powers | Core workflows only |
 | Gemini CLI | `.gemini/commands/*.toml` + `.gemini/skills/*.md` | 7 commands | Core workflows only |
 
@@ -80,6 +80,8 @@ The validator checks:
 - common packaging drift like `agents.md` vs `AGENTS.md`
 
 ## Safe Update Workflow
+
+The existing updater targets the mevers fork and assumes a full repository checkout. It does not install standalone skill packages or convert existing vault layouts. Root instruction files are still framework update targets; review local edits before accepting replacements. This redesign does not add a new installation mechanism.
 
 Recommended maintainer flow:
 

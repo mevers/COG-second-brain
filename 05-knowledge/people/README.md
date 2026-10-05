@@ -51,7 +51,7 @@ Don't force a full profile on first encounter. Let it build naturally.
 
 ## Creating New Profiles
 
-Use the template at `06-templates/people-profile-template.md` or run the `brief-people-updater` agent.
+Use the template at `.claude/agents/references/people-profile-template.md` or run the `brief-people-updater` agent.
 
 ## Automated Updates
 

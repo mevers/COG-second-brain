@@ -2,7 +2,7 @@
 
 Verbatim markdown templates for the four documents created in onboarding Step 6 (Generate Profile Documents). Fill in the bracketed placeholders when generating each file.
 
-## `00-inbox/MY-PROFILE.md`
+## `config/MY-PROFILE.md`
 
 ```markdown
 ---
@@ -47,7 +47,7 @@ tags: ["#profile", "#config", "#cog"]
 *Edit this file anytime to update your profile. COG reads it when you use skills.*
 ```
 
-## `00-inbox/MY-INTERESTS.md`
+## `config/MY-INTERESTS.md`
 
 ```markdown
 ---
@@ -119,7 +119,7 @@ type: project-overview
 project: [project-name]
 slug: [project-slug]
 created: YYYY-MM-DD
-status: active
+project_status: active
 tags: ["#project", "#overview"]
 ---
 
@@ -132,10 +132,7 @@ tags: ["#project", "#overview"]
 *What phase are you in? What's happening now?*
 
 ## Project Resources
-- [[braindumps/|Project Braindumps]]
-- [[competitive/|Competitive Intelligence]]
-- [[content/|Content & Assets]]
-- [[planning/|Planning Documents]]
+[Link only to existing project notes or folders; omit this section until resources exist.]
 
 ## Next Steps
 - [ ] [Action item 1]

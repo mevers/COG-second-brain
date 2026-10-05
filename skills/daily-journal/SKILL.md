@@ -1,6 +1,6 @@
 ---
 name: daily-journal
-description: A passive daily work journal that Claude keeps FOR you so you never have to write it yourself. Append short entries after meaningful work (what was done, what you focused on, artifacts touched) to 01-daily/journal/YYYY-MM-DD.md. Run a guided reflection at night or in the morning. Use when you run /daily-journal, say "log this to my journal", "add to today's journal", "reflect on today/yesterday", or when finishing a meaningful chunk of work in any session.
+description: A passive daily work journal that Claude keeps FOR you so you never have to write it yourself. Append short entries after meaningful work (what was done, what you focused on, artifacts touched) to 01-updates/journal/YYYY-MM-DD.md. Run a guided reflection at night or in the morning. Use when you run /daily-journal, say "log this to my journal", "add to today's journal", "reflect on today/yesterday", or when finishing a meaningful chunk of work in any session.
 ---
 
 # Daily Journal
@@ -13,7 +13,7 @@ Two modes:
 2. **`reflect`** — read the day's log (+ recent days) and run a guided reflection with you.
 
 ## Storage
-- One file per day: `01-daily/journal/YYYY-MM-DD.md` (use `date +%F` for today's date; never guess).
+- One file per day: `01-updates/journal/YYYY-MM-DD.md` (use `date +%F` for today's date; never guess).
 - Create the file from the template below on the first entry of the day.
 - Append only — never rewrite earlier entries. Newest entries go at the bottom of the Log section.
 
@@ -64,14 +64,14 @@ _Empty until you run `/daily-journal reflect`._
 ## Mode: reflect
 Triggered by `/daily-journal reflect [today|yesterday|YYYY-MM-DD]` (default: today), or when you say "reflect on today/yesterday" or "let's do the journal".
 
-1. Read the target day's journal file. If it doesn't exist or the Log is thin, say so and offer to reconstruct from other signals (today's brief in `01-daily/briefs/`, recent commits, braindumps) before proceeding — but do NOT fabricate.
+1. Read the target day's journal file. If it doesn't exist or the Log is thin, say so and offer to reconstruct from other signals (today's brief in `01-updates/briefs/`, recent commits, braindumps) before proceeding — but do NOT fabricate.
 2. Read the previous 2-3 journal files for continuity (recurring threads, carried-over blockers).
 3. Summarize the day back to you in a few lines: main focus, what shipped, what stalled. Then ask 2-4 light reflection questions adapted to what the log shows (e.g. "The eval work ate the afternoon — did it move?" rather than generic prompts). Keep it conversational, low-friction; this is meant to be a 2-minute thing at night or in the morning.
 4. Write your answers + a short synthesis into the `## Reflection` section of that day's file. Fill in `## Focus of the day` if still blank.
 5. If the reflection surfaces a durable fact (a decision, a changed priority, a lesson), also write/update the relevant `05-knowledge/` note or a memory per the Brain-First protocol — the journal is ephemeral daily context, not the durable store.
 
 ## Weekly roll-up (optional)
-If you ask for a "week in review" or on a weekly reflection, read the last 7 journal files and synthesize themes into `01-daily/weekly/` (match the existing naming there). Do not auto-run this.
+If you ask for a "week in review" or on a weekly reflection, read the last 7 journal files and synthesize themes into `01-updates/weekly/` (match the existing naming there). Do not auto-run this.
 
 ## Guardrails
 - Single-file discipline: everything for a day lives in that one journal file. Never split into per-entry files.

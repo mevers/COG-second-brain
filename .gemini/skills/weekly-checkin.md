@@ -1,15 +1,21 @@
 # COG Weekly Check-in Playbook
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/weekly-checkin/SKILL.md`.
+
+Include relevant domain notes, project plans/resources and knowledge/booklets; exclude pending input and `.sources/` originals. Use project lifecycle and `content_status` for active/current views: exclude `outdated` as current evidence and follow `superseded_by` for `superseded` notes. Missing status is unassessed.
+
+Use the profile to identify projects, but use `project_status` on the project overview to decide activity. Exclude completed/abandoned projects from active review even if the profile lists them as active; retain historical context. Clarify missing or conflicting status.
+
 ## Goal
 Comprehensive weekly review integrating insights across all domains with pattern recognition.
 
 ## Pre-Flight
-1. Read `00-inbox/MY-PROFILE.md` for name, role, projects, agent_mode
+1. Read `config/MY-PROFILE.md` for name, role, projects, agent_mode
 2. Scan recent content from the past week:
    - `02-personal/braindumps/` (personal domain)
    - `03-professional/braindumps/` (professional domain)
    - `04-projects/*/braindumps/` (each active project)
-   - `01-daily/briefs/` (daily briefs from this week)
+   - `01-updates/briefs/` (daily briefs from this week)
 
 ## Steps
 
@@ -42,7 +48,7 @@ Help set priorities for next week:
 - Carry-over items from this week
 
 ### 6. Generate Check-in
-Save to `01-daily/checkins/weekly-checkin-YYYY-MM-DD.md` with:
+Save to `01-updates/checkins/weekly-checkin-YYYY-MM-DD.md` with:
 ```yaml
 type: weekly-checkin
 created: YYYY-MM-DD

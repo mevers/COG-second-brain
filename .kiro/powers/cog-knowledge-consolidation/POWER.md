@@ -9,6 +9,10 @@ keywords: ["consolidate knowledge", "build frameworks", "synthesize insights", "
 
 Transform scattered insights from braindumps, daily briefs, and check-ins into coherent frameworks and "single source of truth" knowledge documents through pattern recognition and systematic synthesis.
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/knowledge-consolidation/SKILL.md`.
+
+Include relevant domain notes, project plans/resources and knowledge/booklets; exclude pending input and `.sources/` originals. Use project lifecycle and `content_status` for active/current views: exclude `outdated` as current evidence and follow `superseded_by` for `superseded` notes. Missing status is unassessed.
+
 ## When This Power Activates
 
 - User wants to consolidate their insights
@@ -21,9 +25,9 @@ Transform scattered insights from braindumps, daily briefs, and check-ins into c
 ### 1. Data Gathering
 
 Scan vault for unprocessed content:
-- Braindumps: `02-personal/`, `03-professional/`, `04-projects/*/`, `00-inbox/`
-- Daily briefs: `01-daily/briefs/`
-- Check-ins: `01-daily/checkins/`
+- Braindumps: `02-personal/`, `03-professional/`, `04-projects/*/`
+- Daily briefs: `01-updates/briefs/`
+- Check-ins: `01-updates/checkins/`
 - Project documents: `04-projects/*/planning/`, `04-projects/*/resources/`
 
 Ask user: "What time period should I analyze? (last week, last month, last quarter, all time, custom?)"
@@ -77,9 +81,9 @@ Synthesize patterns into actionable frameworks:
 
 ### 5. Cleanup and Archival
 
-- Mark processed braindumps: `status: "consolidated"`
+- Preserve source metadata and prior consolidation backlinks.
 - Add consolidation reference: `consolidated_in: "[[consolidation-YYYY-MM-DD]]"`
-- Archive superseded content to `00-inbox/archive/`
+- Retain superseded guidance in place with `content_status: superseded` and `superseded_by`. If obsolete with no replacement, use `content_status: outdated` without `superseded_by`.
 
 ## Framework Status Levels
 

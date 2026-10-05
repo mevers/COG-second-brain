@@ -18,7 +18,7 @@ The harness is opt-in. Run it when:
 
 - Invoked as `/closed-loop <task>` or `/closed-loop <spec-path>`.
 - The user asks for the closed loop, proper verification, or an evidence trail.
-- `verification_harness: on` in `00-inbox/MY-PROFILE.md` and this is a build task.
+- `verification_harness: on` in `config/MY-PROFILE.md` and this is a build task.
 - Another skill that declares a `normal`+ lane reaches its verify step.
 
 Do **not** run it on a request that did not ask for it. Notes, briefs, research, drafts, and ordinary edits are not harness runs, and a checkpoint ledger on those is pure overhead.

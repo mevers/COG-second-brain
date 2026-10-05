@@ -1,11 +1,13 @@
 # COG Daily Brief Playbook
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/daily-brief/SKILL.md`.
+
 ## Goal
 Generate a personalized news intelligence briefing with verified sources.
 
 ## Pre-Flight
-1. Read `00-inbox/MY-INTERESTS.md` for topics and preferred sources
-2. Read `00-inbox/MY-PROFILE.md` for role context and agent_mode
+1. Read `config/MY-INTERESTS.md` for topics and preferred sources
+2. Read `config/MY-PROFILE.md` for role context and agent_mode
 3. Read `03-professional/COMPETITIVE-WATCHLIST.md` for entities to track
 4. If no interests file, suggest running `/onboarding` first
 
@@ -37,7 +39,7 @@ For each story:
 - Recommended actions
 
 ### 4. Generate Brief
-Save to `01-daily/briefs/daily-brief-YYYY-MM-DD.md` with:
+Save to `01-updates/briefs/daily-brief-YYYY-MM-DD.md` with:
 ```yaml
 type: daily-brief
 created: YYYY-MM-DD

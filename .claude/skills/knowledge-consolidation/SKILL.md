@@ -7,6 +7,8 @@ integrations: []
 
 # COG Knowledge Consolidation Skill
 
+The filing and retention instructions below apply to both full-checkout and selected-skill installations.
+
 ## Purpose
 Transform scattered insights from braindumps, daily briefs, and check-ins into coherent frameworks and "single source of truth" knowledge documents through pattern recognition and systematic synthesis.
 
@@ -19,7 +21,7 @@ Transform scattered insights from braindumps, daily briefs, and check-ins into c
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — delegate scanning and pattern extraction to parallel sub-agents (e.g., one per domain: personal braindumps, professional braindumps, project-specific content, daily briefs). Each agent identifies themes and patterns, then a synthesis agent combines findings into frameworks.
 - If `agent_mode: solo` (default) — handle all scanning, pattern recognition, and framework building directly. No delegation.
 
@@ -35,17 +37,19 @@ Transform scattered insights from braindumps, daily briefs, and check-ins into c
 
 ### 1. Data Gathering
 
+Include relevant filed notes throughout `02-personal/`, `03-professional/`, `04-projects/` and `05-knowledge/`, including booklets, project resources/plans and guidance. Exclude `00-inbox/`, configuration, framework files and `<note-stem>.sources/` duplicates. Treat reviews of earlier notes as derivative evidence, not independent observations. For active-project views, inspect `project_status` on the overview; completed/abandoned projects can inform history but must not reappear as active tasks. For current information, exclude `content_status: outdated` notes as current evidence and follow `content_status: superseded` to `superseded_by`; retain and attribute those notes as history. Missing metadata is unknown, not proof of completion or supersession.
+
+
 **Scan vault for unprocessed or partially processed content:**
 
 - All braindumps since last consolidation:
   - `02-personal/braindumps/`
   - `03-professional/braindumps/`
   - `04-projects/*/braindumps/`
-  - `00-inbox/braindump-*.md` (mixed domain)
 
 - Daily briefs and check-ins:
-  - `01-daily/briefs/`
-  - `01-daily/checkins/`
+  - `01-updates/briefs/`
+  - `01-updates/checkins/`
 
 - Any meeting transcripts or project documents in:
   - `04-projects/*/planning/`
@@ -53,7 +57,7 @@ Transform scattered insights from braindumps, daily briefs, and check-ins into c
 
 **Determine scope:**
 - Ask user: "What time period should I analyze? (last week, last month, last quarter, all time, or custom range?)"
-- Identify unprocessed content (check for `status: "captured"` or missing consolidation metadata)
+- Identify notes not yet synthesized or changed since their last consolidation. `status: "captured"` on a filed braindump describes an existing output, not pending inbox input
 
 **Gather statistics:**
 - Total documents to analyze
@@ -167,24 +171,20 @@ Create the master consolidation document using the report template in `reference
 
 Save to: `05-knowledge/consolidated/consolidation-YYYY-MM-DD.md`
 
-### 6. Cleanup and Archival
+### 6. Backlinks and Supersession
 
-**Mark processed braindumps:**
-Update frontmatter in processed braindumps:
+**Link synthesized notes:**
+Add consolidation backlinks to source notes used in synthesis, preserving existing links and unrelated metadata:
 ```yaml
-status: "consolidated"
 consolidated_in: "[[consolidation-YYYY-MM-DD]]"
 consolidated_date: "YYYY-MM-DD"
 ```
 
-**Archive outdated content:**
-Move superseded frameworks or insights to:
-`00-inbox/archive/[filename]-archived-YYYY-MM-DD.md`
-
-Add note explaining why archived and what supersedes it.
+**Retain superseded guidance in place:**
+Set `content_status: "superseded"` and `superseded_by: "[[replacement-note]]"` on the old guidance; mark the replacement `content_status: "current"`. Explain the change and retain both notes at their existing paths. If content is no longer accurate or applicable and no replacement exists, use `content_status: "outdated"` without `superseded_by`. Use these keys at the top level of frontmatter, consistently with knowledge notes and agent memories. Omit `superseded_by` for `current` and `outdated` notes. Historical observations need no content-status label. Do not move content to an archive.
 
 **Maintain clean knowledge base:**
-- Remove redundancy while preserving important context
+- Link related notes rather than deleting historical evidence
 - Update cross-references
 - Fix broken links
 - Ensure consistent tagging
@@ -206,13 +206,13 @@ Consolidation is a **loop-until-dry extraction with a completeness critic**, not
 
 **The verifier (deterministic where it can be):**
 - **Traceability:** every framework principle links at least one source document. A principle with no `[[source]]` is dropped, not published. This is mechanical and is COG's verification-first rule for consolidation.
-- **Coverage:** every in-scope document ends marked `status: "consolidated"` with a `consolidated_in` backlink.
+- **Coverage:** account for every in-scope document in the report. Add `consolidated_in` links for notes used in synthesis; reviewing a note does not require inventing a framework for it.
 - **Dedup:** before creating a framework, check `05-knowledge/consolidated/` so an existing framework is updated, not duplicated.
 - The completeness critic ("did we miss a theme?") is the one judgment-based check; keep it explicit and evidence-linked.
 
 **Termination conditions (layered):**
 - **Dry:** K=2 consecutive passes find no new theme or document.
-- **Coverage complete:** all in-scope documents marked consolidated.
+- **Coverage complete:** all in-scope documents reviewed and their use or lack of synthesis reported.
 - **Hard cap:** a max number of extraction passes, so a noisy corpus cannot loop forever.
 
 **Patterns:** loop-until-dry (the spine) + plan-execute-verify (each pass) + orchestrator-workers (team-mode domain scans) + completeness critic.

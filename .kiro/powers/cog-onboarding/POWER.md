@@ -9,6 +9,8 @@ keywords: ["onboarding", "setup COG", "setup profile", "get started", "configure
 
 Welcome new users and collect essential information to personalize their COG (Cognition + Obsidian + Git) second brain experience.
 
+For filing, source preservation, discovery and lifecycle, follow `.claude/skills/onboarding/SKILL.md`.
+
 ## When This Power Activates
 
 - User mentions "onboarding", "setup", or "get started"
@@ -29,7 +31,7 @@ Welcome new users and collect essential information to personalize their COG (Co
 
 ### 1. Check for Existing Profile
 
-Look for `00-inbox/MY-PROFILE.md` in the vault:
+Look for `config/MY-PROFILE.md` in the vault:
 - If exists: Ask "What would you like to update? Just tell me what needs changing." (no numbered menus)
 - If not found: Proceed with full onboarding
 
@@ -69,33 +71,33 @@ Default to `solo` if user doesn't express a preference. Store as `agent_mode: so
 
 Create these markdown files:
 
-**`00-inbox/MY-PROFILE.md`** - Basic profile with name, role, active projects
-**`00-inbox/MY-INTERESTS.md`** - Topics and preferred news sources
+**`config/MY-PROFILE.md`** - Basic profile with name, role, active projects
+**`config/MY-INTERESTS.md`** - Topics and preferred news sources
 **`03-professional/COMPETITIVE-WATCHLIST.md`** - Only if they mentioned competitors
 **`04-projects/[project-slug]/PROJECT-OVERVIEW.md`** - Only if they mentioned projects
 
 ### 7. Create Directory Structure
 
 ```
+config/
 00-inbox/
-01-daily/briefs/, checkins/
-02-personal/braindumps/, development/, wellness/
-03-professional/braindumps/, leadership/, strategy/, skills/
-04-projects/[project-slug]/braindumps/, competitive/, content/, planning/, resources/
+01-updates/briefs/, checkins/
+02-personal/braindumps/
+03-professional/braindumps/
+04-projects/[project-slug]/PROJECT-OVERVIEW.md (create subfolders when used)
 05-knowledge/consolidated/, patterns/, timeline/, booklets/
-06-templates/
 ```
 
 ### 8. Generate Welcome Guide and Wrap Up
 
-Create `00-inbox/WELCOME-TO-COG.md` with quick start instructions. Suggest a natural next action (braindump or daily brief) without presenting a numbered menu.
+Create `config/WELCOME-TO-COG.md` with quick start instructions. Suggest a natural next action (braindump or daily brief) without presenting a numbered menu.
 
 Also mention that COG can be kept up to date: "When new COG versions are released, run `/update-cog` or `./cog-update.sh` to safely update skills and docs without touching your personal content."
 
 ## Success Criteria
 
-- MY-PROFILE.md created in 00-inbox/
-- MY-INTERESTS.md created in 00-inbox/
+- MY-PROFILE.md created in config/
+- MY-INTERESTS.md created in config/
 - Project directories created if applicable
 - Welcome guide created
 - User understands next steps

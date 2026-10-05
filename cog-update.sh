@@ -13,8 +13,8 @@
 set -euo pipefail
 
 # ── Configuration ────────────────────────────────────────────────────
-REMOTE_NAME="cog-upstream"
-REMOTE_URL="https://github.com/huytieu/COG-second-brain.git"
+REMOTE_NAME="cog-fork"
+REMOTE_URL="https://github.com/mevers/COG-second-brain.git"
 BRANCH="main"
 VERSION_FILE="COG-VERSION"
 VALIDATOR_SCRIPT="scripts/validate-agent-surface.sh"
@@ -148,7 +148,7 @@ FRAMEWORK_FILES=(
 
   # People CRM
   "05-knowledge/people/README.md"
-  "06-templates/people-profile-template.md"
+  ".claude/agents/references/people-profile-template.md"
 
   # Framework config
   "CLAUDE.md"
@@ -256,7 +256,7 @@ usage() {
   cat <<'EOF'
 COG Upstream Update Script
 
-Updates framework files (skills, docs, scripts) from the official COG repo
+Updates framework files (skills, docs, scripts) from the mevers COG fork
 without touching your personal content (braindumps, profiles, notes).
 
 Usage:
@@ -268,12 +268,12 @@ Usage:
   ./cog-update.sh --help     Show this help message
 
 How it works:
-  1. Adds/fetches the upstream remote (cog-upstream)
+  1. Adds/fetches the upstream remote (cog-fork)
   2. Compares each framework file against the upstream version
   3. Offers to update changed files (interactive mode) or updates all (--force)
   4. Warns if your working tree is already dirty before replacing framework files
   5. Runs the packaging validator after updates when available
-  6. Your content folders (00-inbox, 01-daily, etc.) are NEVER modified
+  6. Your content folders (00-inbox, 01-updates, etc.) are NEVER modified
 
 Safe to run anytime — your notes, profiles, and braindumps are never touched.
 EOF

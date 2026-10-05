@@ -20,10 +20,11 @@ Thumbs.db
 # If you are using the PUBLIC upstream repo directly (not a fork), uncomment
 # the lines below to keep your personal content out of git:
 #
+# config/*
 # 00-inbox/*
 # !00-inbox/.gitkeep
-# 01-daily/*
-# !01-daily/.gitkeep
+# 01-updates/*
+# !01-updates/.gitkeep
 # 02-personal/*
 # !02-personal/.gitkeep
 # 03-professional/*

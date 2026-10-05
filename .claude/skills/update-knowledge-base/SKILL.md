@@ -15,7 +15,7 @@ integrations: [github, linear, jira, confluence, notion]
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — use parallel agents to scan multiple sources and update multiple knowledge files simultaneously
 - If `agent_mode: solo` — process updates sequentially, one knowledge file at a time
 
@@ -23,8 +23,8 @@ integrations: [github, linear, jira, confluence, notion]
 
 ## Pre-Flight Check
 
-1. **Read `00-inbox/MY-INTEGRATIONS.md`** for active data sources and publishing targets
-2. **Read `00-inbox/MY-PROFILE.md`** for active projects
+1. **Read `config/MY-INTEGRATIONS.md`** for active data sources and publishing targets
+2. **Read `config/MY-PROFILE.md`** for active projects
 3. **Get current timestamp:** Run `date '+%Y-%m-%d %H:%M'` using Bash
 4. **Scan existing knowledge base:** Glob `05-knowledge/**/*.md` to understand current state
 

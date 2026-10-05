@@ -1,6 +1,6 @@
 ---
 name: memory-hygiene
-description: Periodic trust sweep of persistent memory and durable knowledge notes - re-verifies environment-dependent claims against the live environment, stamps last_verified + confidence, and proposes archiving drifted entries
+description: Periodic trust sweep of persistent memory and durable knowledge notes - re-verifies environment-dependent claims against the live environment, stamps last_verified + confidence, and proposes marking obsolete entries with content_status
 ---
 
 Read `.claude/skills/memory-hygiene/SKILL.md` and execute it exactly as written — that file is the authoritative

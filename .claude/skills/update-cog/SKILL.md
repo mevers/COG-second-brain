@@ -8,7 +8,7 @@ integrations: [git]
 # COG Update Skill
 
 ## Purpose
-Help the user update their COG framework files (skills, documentation, scripts) from the official upstream repository without risking their personal content (braindumps, profiles, notes).
+Help the user update their COG framework files (skills, documentation, scripts) from the mevers fork repository without risking their personal content (braindumps, profiles, notes).
 
 ## When to Invoke
 - User asks to "update COG", "check for updates", or "get latest COG version"
@@ -23,11 +23,11 @@ Read `COG-VERSION` from the vault root. If it doesn't exist, inform the user the
 ### 2. Ensure Upstream Remote
 ```bash
 # Add the upstream remote if not already present
-git remote get-url cog-upstream 2>/dev/null || \
-  git remote add cog-upstream https://github.com/huytieu/COG-second-brain.git
+git remote get-url cog-fork 2>/dev/null || \
+  git remote add cog-fork https://github.com/mevers/COG-second-brain.git
 
 # Fetch latest
-git fetch cog-upstream main --quiet
+git fetch cog-fork main --quiet
 ```
 
 ### 3. Compare Versions
@@ -36,7 +36,7 @@ git fetch cog-upstream main --quiet
 cat COG-VERSION
 
 # Upstream version
-git show cog-upstream/main:COG-VERSION
+git show cog-fork/main:COG-VERSION
 ```
 
 If versions match, tell the user they're up to date.
@@ -44,7 +44,7 @@ If versions match, tell the user they're up to date.
 ### 4. Show What Changed
 For each framework file, compare local vs upstream:
 ```bash
-git diff HEAD..cog-upstream/main -- <file>
+git diff HEAD..cog-fork/main -- <file>
 ```
 
 **Framework files** (safe to update — never contain user content):
@@ -63,7 +63,7 @@ Before updating, check if the user has customized any framework files:
 # NOTE: this cannot tell a local customization apart from an upstream
 # change you have not pulled yet — both show up as a diff. Treat any
 # output as "needs a look", not as proof the user edited the file.
-git diff cog-upstream/main -- <file>
+git diff cog-fork/main -- <file>
 ```
 
 If a file differs, warn the user and offer options:
@@ -75,7 +75,7 @@ If a file differs, warn the user and offer options:
 For files the user approves:
 ```bash
 # Surgical file replacement — no merge, no rebase, zero conflict risk
-git checkout cog-upstream/main -- <file>
+git checkout cog-fork/main -- <file>
 ```
 
 ### 7. Verify & Summarize
@@ -98,7 +98,7 @@ For users who prefer a non-AI update, mention the update script:
 ```
 
 ## Important Notes
-- **Content folders are NEVER touched**: `00-inbox/`, `01-daily/`, `02-personal/`, `03-professional/`, `04-projects/`, `05-knowledge/`, `06-templates/` contain user data and are always ignored
+- **Content folders are NEVER touched**: `config/`, `00-inbox/`, `01-updates/`, `02-personal/`, `03-professional/`, `04-projects/`, `05-knowledge/`, `06-templates/` contain user data and are always ignored
 - **The .gitignore is designed** so content folders are excluded from upstream tracking (only `.gitkeep` files are tracked)
 - **The update script updates itself** — `cog-update.sh` is in the framework file list
 - **No merge conflicts possible** — this uses `git checkout` for surgical file replacement, not `git merge` or `git rebase`

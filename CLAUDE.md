@@ -27,7 +27,7 @@ Three ways to turn it on:
 
 - **By skill.** `/closed-loop`, `/ultragoal`, `/retro`, `/harvest`, `/review-cockpit`.
 - **By phrasing.** "Run this through the closed loop", "verify this properly", "track this as an ultragoal", "give me an evidence trail".
-- **By profile.** Set `verification_harness: on` in `00-inbox/MY-PROFILE.md` frontmatter to make the `normal`-lane pipeline the default for build tasks. Absent or `off` means opt-in per request.
+- **By profile.** Set `verification_harness: on` in `config/MY-PROFILE.md` frontmatter to make the `normal`-lane pipeline the default for build tasks. Absent or `off` means opt-in per request.
 
 Inside a harness run: checkpoints, gate classes, risk lanes, and file homes are in `WORKFLOW.md`; the build-verify-fix pipeline is in `.claude/skills/closed-loop/SKILL.md`; multi-session goals are in `.claude/skills/ultragoal/SKILL.md`. Those documents oblige nothing in a session that never invoked them.
 
@@ -105,6 +105,8 @@ Read("/tmp/slack-data.md")
 
 ### Single-File Deliverable Rule — ALWAYS APPLY
 
+For vault capture, this governs the user-facing summary only. File unrelated subjects separately and preserve linked originals as required by the capture skills.
+
 The user reviews **one file per run**. Multi-file outputs (staging files, per-worker dumps, split reports) make review impossible.
 
 - **Default: work in a single file.** If the task fits in one file, never split it.
@@ -181,9 +183,11 @@ The failure mode this prevents is **confident-but-unchecked**: a step returns pl
 
 ## Daily Journal (ALWAYS APPLY)
 
+Applies inside a user vault; do not create personal journal entries in a framework-only development checkout.
+
 The daily journal is an **ambient** behavior, not a command. The trigger lives here because it has to be loaded in every session; the procedure lives in the skill (`.claude/skills/daily-journal/SKILL.md`).
 
-- **After finishing a meaningful unit of work, append one entry** to `01-daily/journal/YYYY-MM-DD.md` (get the date with `date +%F`, never guess). Meaningful = shipped or committed something, produced a deliverable, made a decision, changed direction, or hit a notable blocker.
+- **After finishing a meaningful unit of work, append one entry** to `01-updates/journal/YYYY-MM-DD.md` (get the date with `date +%F`, never guess). Meaningful = shipped or committed something, produced a deliverable, made a decision, changed direction, or hit a notable blocker.
 - **Create the file from the skill's template on the first entry of the day.** Append only; newest entries at the bottom of the `## Log` section.
 - **Do NOT log** trivial reads, one-line lookups, mid-task scratch work, the journal's own writes, or anything you asked to keep out. Do not announce the write — append and carry on.
 - Read the skill body for the entry format, `reflect` mode, and the full guardrails before the session's first write.
@@ -193,7 +197,7 @@ The daily journal is an **ambient** behavior, not a command. The trigger lives h
 
 ## Integration Preferences
 
-Before using any external integration in a skill, check `00-inbox/MY-INTEGRATIONS.md`:
+Before using any external integration in a skill, check `config/MY-INTEGRATIONS.md`:
 
 - **Active integrations**: Use normally.
 - **Disabled integrations**: Skip silently. Do not attempt to call their tools, do not suggest setting them up, do not mention them in output.
@@ -205,7 +209,7 @@ COG uses role packs (`.claude/roles/*.md`) to personalize skill recommendations 
 
 ### How role matching works
 1. During onboarding, the user's role text is matched against `role_id` and `aliases` in each role pack's YAML frontmatter.
-2. The matched role pack is stored as `role_pack` in `00-inbox/MY-PROFILE.md` frontmatter.
+2. The matched role pack is stored as `role_pack` in `config/MY-PROFILE.md` frontmatter.
 3. When suggesting skills or workflows, check the user's `role_pack` and order recommendations by role relevance.
 
 ### Role-aware behavior
@@ -244,7 +248,7 @@ Role packs live in `.claude/roles/`. New roles can be added by dropping a file f
 
 ### Content directories (never touched by updates)
 - `00-inbox/` — Profiles, interests, integrations
-- `01-daily/` — Briefs and check-ins
+- `01-updates/` — Briefs and check-ins
 - `02-personal/` — Personal braindumps (private)
 - `03-professional/` — Professional braindumps and strategy
 - `04-projects/` — Per-project tracking

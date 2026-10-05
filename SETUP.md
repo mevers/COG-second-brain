@@ -18,7 +18,7 @@ Complete step-by-step instructions for setting up your COG (Cognition + Obsidian
 
 **Step 1: Clone the repo to where you want your second brain**
 ```bash
-git clone https://github.com/huytieu/COG-second-brain.git
+git clone https://github.com/mevers/COG-second-brain.git
 cd COG-second-brain
 ```
 
@@ -84,9 +84,9 @@ Onboarding will ask you:
 **Takes 2 minutes. Everything is stored as markdown files you can edit.**
 
 Onboarding creates:
-- `00-inbox/MY-PROFILE.md` - Your info, role pack, and projects
-- `00-inbox/MY-INTERESTS.md` - Topics for daily briefs
-- `00-inbox/MY-INTEGRATIONS.md` - Active/disabled external service integrations
+- `config/MY-PROFILE.md` - Your info, role pack, and projects
+- `config/MY-INTERESTS.md` - Topics for daily briefs
+- `config/MY-INTEGRATIONS.md` - Active/disabled external service integrations
 - `03-professional/COMPETITIVE-WATCHLIST.md` - Tracking list (if any)
 - Project folders in `04-projects/`
 
@@ -158,8 +158,9 @@ COG-second-brain/              # This is your second brain folder
 │   ├── commands/              # 7 Gemini CLI commands (core workflows)
 │   └── skills/                # Detailed Gemini command playbooks
 ├── CLAUDE.md                  # Framework instructions (role packs, integrations)
-├── 00-inbox/                  # Profiles, interests, integrations (created by onboarding)
-├── 01-daily/                  # Daily briefs and check-ins
+├── config/                 # Profile, interests, integrations and welcome guide
+├── 00-inbox/                  # Pending or blocked input only
+├── 01-updates/             # Daily briefs and check-ins
 │   ├── briefs/
 │   └── checkins/
 ├── 02-personal/               # Personal domain (private)
@@ -167,13 +168,12 @@ COG-second-brain/              # This is your second brain folder
 ├── 03-professional/           # Professional domain
 │   └── braindumps/
 ├── 04-projects/               # Project-specific (created by onboarding)
-├── 05-knowledge/              # Consolidated insights
+└── 05-knowledge/              # Consolidated insights
 │   ├── consolidated/
 │   ├── patterns/
 │   ├── people/                # People CRM profiles
 │   ├── booklets/              # URL bookmarks
 │   └── timeline/
-└── 06-templates/              # Markdown templates (incl. people profile)
 ```
 
 ## Optional: Advanced Configuration
@@ -237,7 +237,7 @@ Now your braindumps sync across all Apple devices!
 ### Customizing Your Interests
 
 **Option 1: Edit directly**
-Open `00-inbox/MY-INTERESTS.md` and edit the topics and sources.
+Open `config/MY-INTERESTS.md` and edit the topics and sources.
 
 **Option 2: Re-run onboarding**
 In Claude Code, ask: "Run onboarding" and select "Update interests"
@@ -259,7 +259,7 @@ Then create `04-projects/my-new-project/PROJECT-OVERVIEW.md`:
 type: project-overview
 project: My New Project
 created: 2025-01-15
-status: active
+project_status: active
 ---
 
 # My New Project
@@ -275,7 +275,7 @@ status: active
 - [ ] Action 2
 ```
 
-Update `00-inbox/MY-PROFILE.md` to include the new project in your active projects list.
+Update `config/MY-PROFILE.md` to include the new project in your active projects list.
 
 ## Customizing Skills
 
@@ -477,15 +477,15 @@ The agent will:
 
 ```bash
 # One-time setup: add the upstream remote
-git remote add cog-upstream https://github.com/huytieu/COG-second-brain.git
+git remote add cog-fork https://github.com/mevers/COG-second-brain.git
 
 # Fetch latest
-git fetch cog-upstream main
+git fetch cog-fork main
 
 # Update specific files (surgical replacement, no merge needed)
-git checkout cog-upstream/main -- README.md SETUP.md AGENTS.md
-git checkout cog-upstream/main -- .claude/skills/ .kiro/powers/ .gemini/
-git checkout cog-upstream/main -- COG-VERSION cog-update.sh
+git checkout cog-fork/main -- README.md SETUP.md AGENTS.md
+git checkout cog-fork/main -- .claude/skills/ .kiro/powers/ .gemini/
+git checkout cog-fork/main -- COG-VERSION cog-update.sh
 
 # Commit the update
 git add -A && git commit -m "Update COG framework to v$(cat COG-VERSION)"
@@ -495,13 +495,13 @@ git add -A && git commit -m "Update COG framework to v$(cat COG-VERSION)"
 
 | Updated (framework files) | Never touched (your content) |
 |---|---|
-| Skills (`.claude/skills/`, `.kiro/powers/`, `.gemini/`) | `00-inbox/` (profiles, notes) |
-| Docs (`README.md`, `SETUP.md`, `AGENTS.md`, etc.) | `01-daily/` (briefs, checkins) |
+| Skills (`.claude/skills/`, `.kiro/powers/`, `.gemini/`) | `00-inbox/` (pending captures) |
+| Docs (`README.md`, `SETUP.md`, `AGENTS.md`, etc.) | `01-updates/` (briefs, checkins) |
 | Scripts (`cog-update.sh`) | `02-personal/` (braindumps) |
 | Config (`.gitignore`, `.claude-plugin/plugin.json`, `marketplace-entry.json`) | `03-professional/` (braindumps) |
 | Version (`COG-VERSION`) | `04-projects/` (project files) |
-| | `05-knowledge/` (consolidated) |
-| | `06-templates/` (your templates) |
+| | `05-knowledge/` (user notes) |
+| | `config/` (preferences) |
 
 ### Checking Your Version
 

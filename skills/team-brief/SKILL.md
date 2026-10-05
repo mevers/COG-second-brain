@@ -15,7 +15,7 @@ integrations: [github, linear, slack, posthog, hackmd]
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — use the full parallel agent execution strategy below (6 agents)
 - If `agent_mode: solo` — run data collection sequentially in the main conversation. Skip Phase 3.5 (Linear sync-back) and Phase 3.7 (HackMD publish) to keep it fast.
 

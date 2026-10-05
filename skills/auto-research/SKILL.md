@@ -17,7 +17,7 @@ Inspired by Karpathy's autoresearch — but for strategic thinking instead of ML
 
 ## Agent Mode Awareness
 
-**Check `agent_mode` in `00-inbox/MY-PROFILE.md` frontmatter:**
+**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
 - If `agent_mode: team` — use the full parallel agent execution strategy (5-7 agents). This skill benefits massively from team mode.
 - If `agent_mode: solo` — run 2-3 sequential research passes with WebSearch/WebFetch, produce a lighter analysis without the full multi-thread structure.
 

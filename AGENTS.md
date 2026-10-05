@@ -29,9 +29,9 @@ This document defines the available commands/skills for AI agents interacting wi
 5. Confirms extracted info before creating files
 6. Matches role to a role pack (`.claude/roles/*.md`) for personalized skill and integration recommendations
 7. Discovers integrations — presents role-specific recommendations, asks which tools the user already uses
-8. Creates `00-inbox/MY-PROFILE.md` with role_pack, agent_mode, and preferences
-9. Creates `00-inbox/MY-INTERESTS.md` with topics for daily briefs
-10. Creates `00-inbox/MY-INTEGRATIONS.md` with active/disabled integrations
+8. Creates `config/MY-PROFILE.md` with role_pack, agent_mode, and preferences
+9. Creates `config/MY-INTERESTS.md` with topics for daily briefs
+10. Creates `config/MY-INTEGRATIONS.md` with active/disabled integrations
 11. Optionally creates project structures in `04-projects/` and `03-professional/COMPETITIVE-WATCHLIST.md` (only if mentioned)
 12. Generates a welcome guide with role-ordered skills and integration status
 
@@ -73,7 +73,7 @@ This document defines the available commands/skills for AI agents interacting wi
 - Personal: `02-personal/braindumps/`
 - Professional: `03-professional/braindumps/`
 - Project: `04-projects/[project-slug]/braindumps/`
-- Mixed: `00-inbox/`
+- Connected cross-domain thoughts: one primary home with links; unrelated subjects: separate notes.
 
 ---
 
@@ -92,14 +92,14 @@ This document defines the available commands/skills for AI agents interacting wi
 **Purpose:** Find verified, relevant news for personalized daily briefings with strict verification standards and strategic relevance analysis tailored to user's specific interests and projects.
 
 **What it does:**
-1. Reads user interests from `00-inbox/MY-INTERESTS.md`
+1. Reads user interests from `config/MY-INTERESTS.md`
 2. Searches for news within last 7 days only
 3. Verifies sources with credibility assessment (Tier 1/2/3)
 4. Analyzes strategic relevance to user's role and projects
 5. Identifies opportunities and threats
 6. Generates comprehensive briefing with sources
 
-**Output location:** `01-daily/briefs/daily-brief-YYYY-MM-DD.md`
+**Output location:** `01-updates/briefs/daily-brief-YYYY-MM-DD.md`
 
 **Key features:**
 - All news must be from last 7 days (mandatory)
@@ -131,7 +131,7 @@ This document defines the available commands/skills for AI agents interacting wi
 5. Helps set priorities for next week
 6. Generates structured check-in document
 
-**Output location:** `01-daily/checkins/weekly-checkin-YYYY-MM-DD.md`
+**Output location:** `01-updates/checkins/weekly-checkin-YYYY-MM-DD.md`
 
 **Covers:**
 - Overall week assessment and rating
@@ -163,7 +163,7 @@ This document defines the available commands/skills for AI agents interacting wi
 4. Develops actionable frameworks from patterns
 5. Updates existing frameworks or creates new ones
 6. Generates consolidation report
-7. Marks processed braindumps as consolidated
+7. Adds consolidation backlinks to source notes and retains superseded guidance in place
 
 **Output locations:**
 - Frameworks: `05-knowledge/consolidated/[framework-name]-framework.md`
@@ -210,7 +210,7 @@ This document defines the available commands/skills for AI agents interacting wi
 **Output locations:**
 - Standard: `05-knowledge/booklets/[category]/[title-slug]-YYYY-MM-DD.md`
 - Project-specific: `04-projects/[project-slug]/resources/`
-- Unclear: `00-inbox/`
+- Unresolved input: retain pending in `00-inbox/` with a reason; no completed mixed-domain note.
 
 ---
 
@@ -349,7 +349,7 @@ This document defines the available commands/skills for AI agents interacting wi
 
 **What it does:**
 1. Reads `COG-VERSION` to determine current version
-2. Adds/fetches the `cog-upstream` remote from the official repo
+2. Adds/fetches the `cog-fork` remote from the mevers fork
 3. Compares each framework file against upstream
 4. Detects customizations and offers per-file keep/overwrite/backup
 5. Applies updates via surgical `git checkout` (no merge conflicts)
@@ -363,13 +363,13 @@ This document defines the available commands/skills for AI agents interacting wi
 ./cog-update.sh --force   # Update all without prompting
 ```
 
-**Safety:** Content folders (`00-inbox/`, `01-daily/`, `02-personal/`, etc.) are NEVER touched. Only framework files (skills, docs, scripts) are updated.
+**Safety:** Content folders (`00-inbox/`, `01-updates/`, `02-personal/`, etc.) are NEVER touched. Only framework files (skills, docs, scripts) are updated.
 
 ---
 
 ### /memory-hygiene
 
-**Description:** Periodic trust sweep of persistent memory and durable knowledge notes - re-verifies environment-dependent claims against the live environment, stamps `last_verified` + `confidence`, and proposes archiving drifted entries.
+**Description:** Periodic trust sweep of persistent memory and durable knowledge notes - re-verifies environment-dependent claims against the live environment, stamps `last_verified` + `confidence`, and proposes marking obsolete entries with content_status.
 
 **Triggers:**
 - `/memory-hygiene`
@@ -383,8 +383,8 @@ This document defines the available commands/skills for AI agents interacting wi
 1. Sweeps agent memory files and environment-referencing notes in `05-knowledge/`
 2. Classifies claims: environment-dependent (verify with `ls`/`curl`/`gh`) vs preference/judgment (check only for contradiction with newer entries)
 3. Stamps `last_verified` + `confidence` (high/medium/low) into each entry's frontmatter
-4. Fixes verified-wrong facts in place; proposes (never auto-applies) archiving obsolete entries
-5. Writes one sweep report to `01-daily/` with a drift scorecard and deltas vs the previous sweep
+4. Fixes verified-wrong facts in place; proposes (never auto-applies) marking obsolete entries with `content_status: outdated` or `superseded`
+5. Writes one sweep report to `01-updates/` with a drift scorecard and deltas vs the previous sweep
 
 **Budget:** ~1 minute per entry. Unverifiable ≠ drifted.
 
@@ -448,7 +448,7 @@ This document defines the available commands/skills for AI agents interacting wi
 
 The following 5 skills implement the V-model closed loop described in `WORKFLOW.md`: the worker never grades its own homework.
 
-**They are opt-in.** None of them run unless you invoke the skill, ask for the closed loop / proper verification / an evidence trail in those words, or set `verification_harness: on` in `00-inbox/MY-PROFILE.md`. Ordinary work (notes, briefs, research, drafts, edits) carries no checkpoints, no lane classification, and no evidence ledger. `WORKFLOW.md` governs harness runs and nothing else.
+**They are opt-in.** None of them run unless you invoke the skill, ask for the closed loop / proper verification / an evidence trail in those words, or set `verification_harness: on` in `config/MY-PROFILE.md`. Ordinary work (notes, briefs, research, drafts, edits) carries no checkpoints, no lane classification, and no evidence ledger. `WORKFLOW.md` governs harness runs and nothing else.
 
 ---
 
@@ -792,7 +792,7 @@ The following 7 skills raise output quality on writing and visual work. They enc
 3. **`reflect`:** reads the day's log plus recent days, summarizes the day back to you, asks 2-4 light questions adapted to what the log shows, then writes your answers plus a synthesis into the day's file
 4. On request, synthesizes the last 7 files into a week-in-review
 
-**Output location:** `01-daily/journal/YYYY-MM-DD.md`.
+**Output location:** `01-updates/journal/YYYY-MM-DD.md`.
 
 ---
 
@@ -815,7 +815,7 @@ The following 6 skills form a complete product management lifecycle:
 
 **What it does:**
 1. Accepts problem statement and solution from user
-2. Checks active integrations (Linear, GitHub, Jira) in `00-inbox/MY-INTEGRATIONS.md`
+2. Checks active integrations (Linear, GitHub, Jira) in `config/MY-INTEGRATIONS.md`
 3. Searches for potential duplicate issues in the active tracker
 4. If duplicates found, stops and shows candidates
 5. If no duplicates, creates story with user story format and acceptance criteria
@@ -914,7 +914,7 @@ The following 6 skills form a complete product management lifecycle:
 4. Creates new page or updates existing page
 5. Returns published page URL
 
-**Requires:** Confluence integration active in `00-inbox/MY-INTEGRATIONS.md`
+**Requires:** Confluence integration active in `config/MY-INTEGRATIONS.md`
 
 ---
 
@@ -987,7 +987,7 @@ COG tracks the people you work with using progressive, evidence-based profiles s
 **Citation format:** Every observation must include:
 `[Source: [[path/to/source-note]] | YYYY-MM-DD | confidence: high|medium|low]`
 
-Create profiles manually using the template at `06-templates/people-profile-template.md` or run the `brief-people-updater` agent for batch updates.
+Create profiles manually using the template at `.claude/agents/references/people-profile-template.md` or run the `brief-people-updater` agent for batch updates.
 
 ---
 
@@ -997,11 +997,12 @@ Create profiles manually using the template at `06-templates/people-profile-temp
 COG-second-brain/
 ├── .claude/agents/        # Worker agent definitions (6)
 ├── .claude/roles/         # Role packs for personalized recommendations
-├── 00-inbox/              # Landing zone, profile files
+├── config/                 # Profile, interests, integrations and welcome guide
 │   ├── MY-PROFILE.md      # User profile with role pack (created by onboarding)
 │   ├── MY-INTERESTS.md    # User interests (created by onboarding)
 │   └── MY-INTEGRATIONS.md # Active/disabled integrations (created by onboarding)
-├── 01-daily/              # Daily content
+├── 00-inbox/              # Pending or blocked input only
+├── 01-updates/             # Daily content
 │   ├── briefs/            # Daily intelligence briefs
 │   └── checkins/          # Weekly check-ins
 ├── 02-personal/           # Personal domain
@@ -1015,13 +1016,12 @@ COG-second-brain/
 │       ├── braindumps/
 │       ├── competitive/
 │       └── resources/
-├── 05-knowledge/          # Consolidated knowledge
+└── 05-knowledge/          # Consolidated knowledge
 │   ├── consolidated/      # Frameworks and reports
 │   ├── patterns/          # Identified patterns
 │   ├── people/            # People CRM profiles
 │   ├── timeline/          # Thinking evolution
 │   └── booklets/          # URL bookmarks by category
-└── 06-templates/          # Document templates (incl. people profile)
 ```
 
 ---
@@ -1045,9 +1045,9 @@ COG-second-brain/
 ## Configuration
 
 All configuration is stored as readable markdown files:
-- `00-inbox/MY-PROFILE.md` - Profile, role pack, agent mode, and active projects
-- `00-inbox/MY-INTERESTS.md` - Topics for news curation
-- `00-inbox/MY-INTEGRATIONS.md` - Active/disabled external service integrations
+- `config/MY-PROFILE.md` - Profile, role pack, agent mode, and active projects
+- `config/MY-INTERESTS.md` - Topics for news curation
+- `config/MY-INTEGRATIONS.md` - Active/disabled external service integrations
 - `03-professional/COMPETITIVE-WATCHLIST.md` - Companies/people to track
 
 Edit these files anytime - changes take effect immediately.
