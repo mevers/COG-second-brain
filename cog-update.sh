@@ -46,6 +46,7 @@ FRAMEWORK_FILES=(
   ".claude/skills/weekly-checkin/SKILL.md"
   ".claude/skills/knowledge-consolidation/SKILL.md"
   ".claude/skills/url-dump/SKILL.md"
+  ".claude/skills/url-dump/scripts/read_webpage.py"
   ".claude/skills/loop-engineering/SKILL.md"
   ".claude/skills/scout/SKILL.md"
   ".claude/skills/update-cog/SKILL.md"

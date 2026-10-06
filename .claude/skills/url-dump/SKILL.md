@@ -63,6 +63,18 @@ What URL(s) would you like to save?
 - Check if URL is accessible
 - Detect duplicate URLs in existing knowledge base
 - Fetch the web page content
+- If blocked or incomplete, use the bundled Playwright reader
+  with headless=False and a temporary browser profile.
+- Verify the article body was read through its ending.
+  A block page, preview or HTTP 200 alone is not success.
+
+Run `python3 <skill-directory>/scripts/read_webpage.py "<url>"` with a Python
+interpreter that has Playwright and its Chromium browser installed. If missing,
+report the dependency; installation requires the user's permission. Browser
+launch may also require permission to run outside the execution sandbox.
+The reader prints JSON to stdout and does not save the page. Its output requires
+content review: exit code zero means text was extracted, not that the article
+is complete. Read the returned text before filing; if incomplete, retain pending.
 
 #### Content Extraction
 Extract from the page:

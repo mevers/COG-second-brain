@@ -2,6 +2,14 @@
 
 All notable changes to COG (Cognition + Obsidian + Git) will be documented in this file.
 
+## [4.0.1] - 2026-10-07
+
+### Fixed
+
+- Add a visible Chromium fallback for URL capture when ordinary fetching is blocked or incomplete, using a bundled Playwright reader and a temporary browser profile.
+- Require review of the article body through its ending; HTTP success, challenge pages and previews do not establish a complete read.
+- Include the reader in framework updates. Playwright and its Chromium browser must be installed; browser execution may require additional permissions.
+
 ## [4.0.0] - 2026-10-06
 
 Redesigned vault structure. This changes configuration and update-document paths; existing workspaces are not converted automatically.
