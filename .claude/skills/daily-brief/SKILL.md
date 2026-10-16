@@ -118,7 +118,7 @@ Apply comprehensive news research methodology:
 
 #### Strategic Relevance Analysis
 
-Assess impact on user:
+Assess impact using the findings, not topic overlap.
 
 **Direct Impact (High Priority):**
 - News directly affecting user's projects or companies
@@ -152,9 +152,16 @@ Assess impact on user:
 - Market Threats: Market shifts or customer behavior changes
 - Regulatory Threats: New regulations or compliance requirements
 
+#### Summarisation
+
+- Read the primary source. Lead with what changed, the main findings and their evidence.
+- Explain consequences and limiting assumptions; distinguish reported conclusions from your analysis.
+- Use interests for selection. Read saved notes before linking them; matching keywords do not establish relevance.
+- Before saving, check factual accuracy and coverage of the main findings separately, including delegated summaries. Rewrite misleading emphasis or unsupported implications.
+
 ### 3. Generate Daily Brief
 
-Create structured briefing document:
+Use applicable template sections only. Findings precede implications; omit unsupported fields.
 
 ```markdown
 ---
@@ -184,9 +191,9 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 ## High Impact News
 
 ### [News Item 1 - Direct Impact]
-**Relevance:** [Why this matters to you specifically]
+[Detailed summary of the main findings and supporting evidence]
 
-[Detailed summary of the news]
+**Relevance:** [Supported connection to the user, if any]
 
 **Impact Assessment:**
 - **Projects Affected:** [Which of your projects this impacts]
@@ -209,9 +216,9 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 ## Strategic Developments
 
 ### [News Item 3 - Strategic Impact]
-**Relevance:** [Why this matters strategically]
+[Detailed summary of the main findings and supporting evidence]
 
-[Detailed summary]
+**Relevance:** [Why this matters strategically, where supported]
 
 **Strategic Implications:**
 - [Implication 1]
@@ -228,9 +235,9 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 ## Market Intelligence
 
 ### [News Item 4 - Market Trends]
-**Relevance:** [Why this market trend matters]
+[Detailed summary of the main findings and supporting evidence]
 
-[Detailed summary]
+**Relevance:** [Why this market trend matters, where supported]
 
 **Market Impact:**
 - [Impact on target customers]
@@ -247,9 +254,9 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 ## Technology Watch
 
 ### [News Item 5 - Tech Developments]
-**Relevance:** [Why this technology matters]
+[Detailed summary of the main findings and supporting evidence]
 
-[Detailed summary]
+**Relevance:** [Why this technology matters, where supported]
 
 **Technology Implications:**
 - [Impact on tech stack]
@@ -284,12 +291,12 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 
 ## Opportunities & Recommendations
 
-**Note:** Calculate actual due dates from today's date and append Obsidian Tasks emoji format.
+**Optional:** Recommend actions supported by the analysis. Use dates only when supplied or event-driven.
 
 ### Immediate Actions (Today/This Week)
-- [ ] [Specific action item 1] 📅 [YYYY-MM-DD = today's date]
-- [ ] [Specific action item 2] 📅 [YYYY-MM-DD = today's date]
-- [ ] [Specific action item 3] 📅 [YYYY-MM-DD = end of this week]
+- [ ] [Supported action; date only if warranted]
+- [ ] [Supported action; date only if warranted]
+- [ ] [Supported action; date only if warranted]
 
 ### Research Needed
 - [Area 1 requiring deeper investigation]
@@ -449,7 +456,7 @@ A candidate that fails any check is discarded, not softened. This is COG's verif
 
 **Patterns:** evaluator-optimizer (each item scored against the verifier) + reflect-retry (a failed search informs the next query) + orchestrator-workers (team mode).
 
-**In-loop context:** write verified items straight into the brief file as they pass; drop raw fetched page text once the summary and sources are extracted.
+**In-loop context:** retain source references through the summarisation check; save afterwards.
 
 ## Integration with Other Skills
 
@@ -469,7 +476,7 @@ After daily brief, suggest:
 
 ### Relevance Quality
 - User Engagement: Percentage of news items user finds valuable
-- Action Generation: Percentage of news items leading to user action
+- Analytical Value: Implications follow from the reported evidence
 - Strategic Value: User assessment of strategic importance
 - Timing Relevance: How well news timing aligns with user needs
 
@@ -498,8 +505,7 @@ After daily brief, suggest:
 - All sources verified and linked
 - User finds briefing relevant and actionable
 - Confidence levels clearly stated
-- Opportunities and risks identified
-- Follow-up actions suggested
+- Implications and recommendations follow from the findings
 
 ## Philosophy
 

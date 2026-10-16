@@ -2,6 +2,12 @@
 
 All notable changes to COG (Cognition + Obsidian + Git) will be documented in this file.
 
+## [4.0.2] - 2026-10-16
+
+### Fixed
+
+- Make daily briefs lead with source findings, require a source-fidelity check before saving, and make personal connections optional.
+
 ## [4.0.1] - 2026-10-07
 
 ### Fixed
