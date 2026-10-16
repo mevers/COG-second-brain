@@ -104,30 +104,19 @@ done < "$manifest_tmp"
 
 rm -f "$manifest_tmp"
 
-plugin_version=$(python3 - <<'PY'
+if python3 - <<'PYVERSION'
 import json
-with open('.claude-plugin/plugin.json') as f:
-    print(json.load(f)['version'])
-PY
-)
-marketplace_version=$(python3 - <<'PY'
-import json
-with open('marketplace-entry.json') as f:
-    print(json.load(f)['version'])
-PY
-)
-cog_version=$(tr -d '[:space:]' < COG-VERSION)
-agent_plugin_version=$(python3 - <<'PY'
-import json
-with open('plugin.json') as f:
-    print(json.load(f)['version'])
-PY
-)
+from pathlib import Path
 
-if [[ "$plugin_version" == "$marketplace_version" && "$plugin_version" == "$cog_version" && "$plugin_version" == "$agent_plugin_version" ]]; then
-  ok "Version is aligned across .claude-plugin/plugin.json, plugin.json, marketplace-entry.json, and COG-VERSION ($cog_version)"
+version = Path('COG-VERSION').read_text().strip()
+for name in ('plugin.json', '.claude-plugin/plugin.json', '.cursor-plugin/plugin.json', 'marketplace-entry.json'):
+    if json.loads(Path(name).read_text()).get('version') != version:
+        raise SystemExit(f'{name}: version differs from COG-VERSION; run scripts/build-agent-plugin.sh')
+PYVERSION
+then
+  ok "All manifest versions match COG-VERSION"
 else
-  record_failure "Version mismatch: .claude-plugin/plugin.json=$plugin_version plugin.json=$agent_plugin_version marketplace-entry.json=$marketplace_version COG-VERSION=$cog_version"
+  record_failure "Manifest versions are stale; run scripts/build-agent-plugin.sh"
 fi
 
 if rg -n "agents\.md" README.md SETUP.md CONTRIBUTING.md .github/MARKETPLACE.md >/dev/null 2>&1; then

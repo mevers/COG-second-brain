@@ -40,7 +40,7 @@ We welcome ideas for new features or improvements:
    - Bump the version in `COG-VERSION` (e.g., `3.2.0` → `3.3.0`)
    - Add a changelog entry in `CHANGELOG.md`
    - If adding a new file, add it to the `FRAMEWORK_FILES` array in `cog-update.sh`
-   - Update `marketplace-entry.json` and `.claude-plugin/plugin.json` version fields
+   - Run `./scripts/build-agent-plugin.sh` to generate all JSON manifest versions from `COG-VERSION` and rebuild skills; never edit manifest versions directly
    - Keep the support matrix truthful in `README.md`, `SETUP.md`, `AGENTS.md`, and `docs/AGENT-SUPPORT.md`
    - Run `./scripts/validate-agent-surface.sh` before opening the PR
 
