@@ -1,167 +1,53 @@
 ---
 name: daily-brief
-description: Generate personalized news intelligence with verified sources (7-day freshness requirement)
+description: Produce a sourced daily brief across personal interests, professional developments and business intelligence. Use for daily briefs, news updates and morning briefings.
 roles: [all]
 integrations: [web-search]
 ---
 
-# COG Daily Brief Skill
+# Daily brief
 
-The filing and retention instructions below apply to both full-checkout and selected-skill installations.
+Help the user learn, stay informed and recognise developments that affect their work. An article may serve all three purposes.
 
-## Purpose
-Find verified, relevant news for personalized daily briefings with strict verification standards and strategic relevance analysis tailored to user's specific interests and projects.
+Follow the writing preferences in `config/MY-PROFILE.md`.
 
-## When to Invoke
-- User wants their daily news briefing
-- User says "daily brief", "news", "what's happening", "morning brief"
-- User wants to stay updated on their interests
-- Morning routine or regular check-in time
+Resolve paths from the vault root. Save the brief to `01-updates/briefs/daily-brief-YYYY-MM-DD.md`.
 
-## Agent Mode Awareness
+## Establish context
 
-**Check `agent_mode` in `config/MY-PROFILE.md` frontmatter:**
-- If `agent_mode: team` — delegate news research across different interest areas to parallel sub-agents (e.g., one agent per topic cluster). Each agent searches, verifies sources, and returns findings. Combine and synthesize results into the final brief.
-- If `agent_mode: solo` (default) — handle all research and synthesis directly in the conversation. No delegation.
+Read `config/MY-PROFILE.md`, `config/MY-INTERESTS.md`, and `03-professional/COMPETITIVE-WATCHLIST.md` if present. Ask for missing interests rather than inventing them. Read relevant active-project overviews and saved notes when assessing a connection. Completed projects are historical; follow `superseded_by` and do not treat outdated notes as current evidence.
 
-## Pre-Flight Check
+Read the three latest briefs in `01-updates/briefs/`. Deduplicate by URLs and story meaning; include repeats only for a material update, labelled with the earlier coverage date. Obtain the actual current timestamp in the user's timezone.
 
-**Before executing, check for user profile:**
+If `agent_mode: team`, use two independent discovery passes before selection. Give a fresh researcher the full profile, interests, preferred source links, relevant work context, date and prior-brief coverage, but not your candidate list. Research independently before comparing findings. Otherwise repeat discovery using different news sites. Keep concise records of queries or listing URLs, retrieved titles, dates, article URLs and access limits.
 
-1. Look for `config/MY-PROFILE.md` and `config/MY-INTERESTS.md` in the vault
-2. If NOT found:
-   ```
-   Welcome to COG! Daily briefs work best when personalized.
+## Find worthwhile material
 
-   Let's quickly set up your profile (takes 2 minutes).
+Rank stories by relevance to the user and the scale of their demonstrated significance or consequences. Novelty alone does not establish priority. A promising method or possible future application is not by itself High Impact. Do not assume one interest has priority; put the strongest stories first, regardless of topic.
 
-   Would you like to run onboarding first, or should I generate a general brief?
-   ```
-3. If found:
-   - Read `MY-INTERESTS.md` to get topics for news curation
-   - Read `MY-PROFILE.md` to get user's name and active projects
-   - Read `03-professional/COMPETITIVE-WATCHLIST.md` if exists for competitive tracking
-   - Use topics to curate relevant news
-   - Connect news to user's active projects when relevant
+Include a story only if a second credible source substantively discusses the primary source. A copy is not enough. Use the discussion to assess the contribution, context and consequences, not just to count sources. Additional coverage establishes neither importance nor independent confirmation.
 
-**Get current timestamp (REQUIRED before generating any files):**
+Inspect each preferred source's recent dated publications. If its homepage lacks usable dates, follow relevant topical sections or dated archives and use valid `site:domain/path` searches. Recover truncated results through smaller calls or further page ranges. Inspect the current listing beyond featured articles. Search interests beyond preferred sources; for each distinct geographic interest, inspect a broad recent regional news index or search-result listing before pursuing individual leads. Respect topic and geographic preferences. Gather candidates before selecting. For broad interests, choose stories that explain an important question, reveal an accessible discovery, or change understanding beyond a specialist task. Specialist findings and operational changes need a specific match to the user's stated interests, responsibilities or active work. A broad field label, journal prestige or generic transferable lesson is insufficient. Personal learning needs no business benefit. Include developments materially affecting the user's work.
 
-1. Run `date '+%Y-%m-%d %H:%M'` using Bash to get the actual current date and time
-2. Store this value and use it for the `created:` frontmatter field
-3. NEVER guess or fabricate the time — always use the value returned by the `date` command
+Verify publication within the last seven days. A new explanation of older research can qualify; distinguish publication, event and research dates. Reconcile discovery against the original interests and preferred sources. Assess strong leads from either pass and resolve accessible gaps before selection. Partial listings and a single result trail remain incomplete discovery; disclose blocked access. Do not treat distinct developments in one topic as duplicates or impose topic quotas.
 
-## Process Flow
+## Establish what the sources support
 
-When using project or knowledge context, inspect project overview lifecycle and `content_status`. Completed projects are historical context; follow `content_status: superseded` to its `superseded_by` replacement. Do not treat `content_status: outdated` content as current information; missing status is unassessed.
+Read the primary source where accessible; otherwise use substantive reporting and disclose material access limits. Limit the summary to material actually read; do not summarise from search snippets alone. Before drafting, note the main finding and any results that change its meaning. For key figures, record what was measured, the group or system, the time period and the limits. Check dates and methods. Attribute announcements and claims; distinguish evidence, interpretation and your own analysis.
 
+Within an eligible story, a claim may rely on one credible source when clearly attributed. Seek independent evidence for disputed claims, broad generalisations and consequential recommendations. A copy of a report is not independent evidence. State uncertainty and unresolved disagreement; narrow or omit unsupported claims. Use source tiers consistently: 1 = authoritative primary material or major reporting; 2 = established specialist reporting/analysis; 3 = informal or unverified leads. State what the evidence establishes and what remains unknown. Do not assign confidence ratings or percentages.
 
-### 1. Gather Context
+## Explain the article and its consequences
 
-Collect the information needed for personalized curation:
+Lead with the main finding or argument, decisive evidence and limitations that change its meaning. Omit details that do not help explain the main finding. Explain what is worth understanding or discovering; broad interests need no invented motivation. Read the relevant note before linking an article to a saved hypothesis, and distinguish illustration from evidence for it.
 
-- Read `config/MY-PROFILE.md` for:
-  - User's name
-  - User's role/job
-  - Active projects
+For material business developments, identify the affected role, project, market or watchlist relationship and explain how the reported change affects it. Consider customers, competition, regulation, technology, investment, talent and partnerships where relevant. Assess opportunities, threats, trade-offs and timing. Connect effects to evidence and state assumptions; do not infer organisational plans from a job title. Recommend a response, investigation or monitoring only when justified, with real deadlines and dependencies where known. Across stories, synthesise supported patterns and priorities for the executive summary, opportunities and risks; label tentative connections rather than presenting coincidence as a trend.
 
-- Read `config/MY-INTERESTS.md` for:
-  - Topics they're interested in
-  - Preferred news sources
+## Review and deliver
 
-- Read `03-professional/COMPETITIVE-WATCHLIST.md` (if exists) for:
-  - Companies/people to track
+Before saving, check each item and the executive summary against the sources, using these notes. Check what figures describe and whether any omitted finding changes the conclusion. Separately check whether each inclusion reason establishes value beyond a topic match, and whether personal/business implications follow from the evidence. Compare the strongest omitted candidates with the weakest selected stories across topics. Correct failures before delivery.
 
-#### Deduplication — Previous Brief Scan
-
-Read up to 3 most recent daily briefs from `01-updates/briefs/` (most recent first):
-- Extract `dedup_urls` from their frontmatter (if present)
-- Also scan their headlines/story titles as semantic fallback for cross-source matching
-- Build a set of **covered stories** to avoid repeating
-
-**Matching rules (in priority order):**
-1. **URL match (primary):** If a candidate story's main source URL already appears in `dedup_urls`, it's a known story
-2. **Headline match (fallback):** If the URL is different but the headline describes the same event as a previous story, treat as duplicate — this catches the same story reported by different outlets
-
-During news research (Step 2), apply dedup rules:
-- **Skip** stories already covered unless there is a **material update** (new data, resolution, escalation, reversal)
-- If including an update, prefix with "**Update:** _first covered [date]_"
-- Stories older than 3 briefs are eligible for re-inclusion if still developing
-
-### 2. News Research and Curation
-
-Apply comprehensive news research methodology:
-
-#### Interest-Based Research
-- Search based on user's current interest profile
-- Focus on strategic relevance to user's role and projects
-- Identify emerging patterns and developments
-- Diversify sources for balanced perspective
-
-#### Verification Standards (MANDATORY)
-
-**Date Verification:**
-- ALL news MUST be from last 7 days ONLY
-- Verify publication dates with verified timestamps
-- NEVER include older news without explicit disclosure
-
-**Source Credibility Assessment:**
-- **Tier 1 Sources (Highest Credibility):** Major news organizations (Reuters, AP, Bloomberg, WSJ, NYT), official company announcements, government statements
-- **Tier 2 Sources (High Credibility):** Industry publications, credible tech/business blogs, research reports from reputable firms
-- **Tier 3 Sources (Moderate - Verify Carefully):** Social media from verified accounts, company blogs, community discussions
-- Minimum 2 credible sources for any claim
-- Cross-reference key facts and figures
-
-**Fact Cross-Reference:**
-- Verify claims across multiple independent sources
-- Use WebFetch to verify any statistics before including them
-- Identify potential bias and provide balanced perspective
-
-#### Strategic Relevance Analysis
-
-Assess impact using the findings, not topic overlap.
-
-**Direct Impact (High Priority):**
-- News directly affecting user's projects or companies
-- Regulatory changes affecting user's industry
-- Competitive moves by direct competitors
-- Technology developments affecting user's tech stack
-
-**Strategic Impact (Medium Priority):**
-- Market trends affecting user's target customers
-- Investment patterns in user's industry
-- Talent market changes affecting hiring
-- Partnership opportunities or threats
-
-**Contextual Impact (Lower Priority):**
-- Broader economic trends affecting business climate
-- Technology trends affecting future planning
-- Industry thought leadership and opinion
-- Educational content for professional development
-
-#### Opportunity and Threat Identification
-
-**Opportunities:**
-- Market Opportunities: New markets or customer segments opening
-- Technology Opportunities: New tools or platforms to leverage
-- Partnership Opportunities: Potential collaboration partners
-- Competitive Opportunities: Competitor weaknesses or market gaps
-
-**Threats:**
-- Competitive Threats: New competitors or competitive advantages
-- Technology Threats: Disruptive technologies or obsolescence risks
-- Market Threats: Market shifts or customer behavior changes
-- Regulatory Threats: New regulations or compliance requirements
-
-#### Summarisation
-
-- Read the primary source. Lead with what changed, the main findings and their evidence.
-- Explain consequences and limiting assumptions; distinguish reported conclusions from your analysis.
-- Use interests for selection. Read saved notes before linking them; matching keywords do not establish relevance.
-- Before saving, check factual accuracy and coverage of the main findings separately, including delegated summaries. Rewrite misleading emphasis or unsupported implications.
-
-### 3. Generate Daily Brief
-
-Use applicable template sections only. Findings precede implications; omit unsupported fields.
+Keep the template's headings and item format. Put the highest-ranked stories under High Impact News, regardless of topic. Use other sections only when their headings fit the content; put remaining selected stories under Further Reading. Keep Executive Summary, Verification Report with all its subsections, and Complete Sources. Omit unused story sections and inapplicable project/action fields; do not write empty-section notices or invent business relevance. Populate metadata, source tiers, counts and verification statements from actual checks. Do not copy default assurances. Retain the template footer when its checks are complete; otherwise state which checks were not completed. Disclose coverage gaps briefly and link the saved brief for review.
 
 ```markdown
 ---
@@ -171,7 +57,6 @@ date: "YYYY-MM-DD"
 created: "YYYY-MM-DD HH:MM"
 sources_verified: true
 news_age_verified: true
-confidence: "high"
 tags: ["#daily-brief", "#news", "#strategic-intelligence"]
 interests: ["interest1", "interest2"]
 projects_referenced: ["project1"]
@@ -204,7 +89,7 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 - [Source Name 1] (Tier [1/2/3]) - [Publication Date] - [Link]
 - [Source Name 2] (Tier [1/2/3]) - [Publication Date] - [Link]
 
-**Confidence:** [High/Medium/Low] - [Reasoning]
+**Evidence limits:** [What the sources establish and what remains unknown. State specific limits that affect interpretation.]
 
 ---
 
@@ -228,7 +113,7 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 **Sources:**
 - [Source listings with credibility tiers and links]
 
-**Confidence:** [High/Medium/Low] - [Reasoning]
+**Evidence limits:** [What the sources establish and what remains unknown. State specific limits that affect interpretation.]
 
 ---
 
@@ -247,7 +132,7 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 **Sources:**
 - [Source listings with credibility tiers and links]
 
-**Confidence:** [High/Medium/Low] - [Reasoning]
+**Evidence limits:** [What the sources establish and what remains unknown. State specific limits that affect interpretation.]
 
 ---
 
@@ -266,7 +151,7 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 **Sources:**
 - [Source listings with credibility tiers and links]
 
-**Confidence:** [High/Medium/Low] - [Reasoning]
+**Evidence limits:** [What the sources establish and what remains unknown. State specific limits that affect interpretation.]
 
 ---
 
@@ -285,7 +170,13 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 **Sources:**
 - [Source listings with credibility tiers and links]
 
-**Confidence:** [High/Medium/Low] - [Reasoning]
+**Evidence limits:** [What the sources establish and what remains unknown. State specific limits that affect interpretation.]
+
+---
+
+## Further Reading
+
+[Optional: other selected stories, using the same summary, relevance, sources and evidence limits fields.]
 
 ---
 
@@ -333,14 +224,11 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 - **Conflicting Information:** [count with resolution approach if any]
 
 ### Freshness Verification
-- ✅ All news items verified within 7-day window
+- [Confirm that every included article has a verified publication date within the last seven days.]
 - Publication date range: [Oldest date] to [Newest date]
 
-### Confidence Assessment
-- **Overall Confidence:** [percentage]%
-- **High Confidence Items:** [count]
-- **Medium Confidence Items:** [count]
-- **Low Confidence Items:** [count] - [reasons if any]
+### Evidence limits
+[Summarise material limits across the brief without repeating each item.]
 
 ---
 
@@ -366,151 +254,3 @@ dedup_urls: ["https://primary-source-url-for-each-story-covered"]
 
 *Curated by COG News Curator | All news verified within 7-day freshness window | Sources cross-referenced for accuracy*
 ```
-
-Save to: `01-updates/briefs/daily-brief-YYYY-MM-DD.md`
-
-### 4. Handle Special Cases
-
-**When No Recent News Found:**
-If no relevant news found in last 7 days for a particular interest area:
-
-```markdown
-### [Interest Area]
-**No significant news found in last 7 days**
-
-Last significant development was [date if known] regarding [topic if known].
-
-**Suggestions:**
-- Consider expanding search criteria
-- Check [alternative sources suggested]
-- This area may be experiencing a quiet period
-```
-
-**NEVER fabricate or use older news without explicit date disclosure.**
-
-**When Information Cannot Be Verified:**
-```markdown
-### [Potential News Item]
-**⚠️ Unable to verify from independent sources**
-
-**Original Source:** [source] - Credibility: [assessment]
-
-**What We Know:**
-[What can be stated based on single source]
-
-**What's Uncertain:**
-[Specific claims that couldn't be verified]
-
-**Recommendation:** Monitor for additional confirmation before acting
-
-**Confidence:** Low - [reasoning]
-```
-
-**When Sources Conflict:**
-```markdown
-### [News Item with Conflicting Reports]
-**⚠️ Conflicting information from multiple sources**
-
-**Perspective 1:**
-[Summary] - **Source:** [source with credibility tier]
-
-**Perspective 2:**
-[Summary] - **Source:** [source with credibility tier]
-
-**Areas of Agreement:**
-- [What sources agree on]
-
-**Areas of Disagreement:**
-- [Where sources conflict]
-
-**Recommendation:** [Approach for resolution or further research]
-
-**Confidence:** Medium - [reasoning]
-```
-
-### 5. Confirm Completion
-- Confirm file was created
-- Show user: "Daily brief saved to [file path]"
-- Optionally show executive summary
-- Ask if they want to explore any topic deeper or capture thoughts via braindump skill
-
-## Loop Engineering
-
-Daily brief is a **verify-retry loop**, not a single search. See `.claude/skills/loop-engineering/SKILL.md` for the shared vocabulary.
-
-**The loop (per interest area):** search → fetch a candidate → run the verifier → keep it or discard and re-search with an adjusted query → repeat until enough verified items or a stop condition fires. In `agent_mode: team`, run one loop per interest cluster as isolated workers (orchestrator-workers), then synthesize.
-
-**The verifier (deterministic, runs every candidate):**
-- Publication date is within the last 7 days. Mechanical date check, not a guess.
-- At least 2 independent credible sources for the claim.
-- Source tier is identified (1 / 2 / 3). Tier 3 needs cross-reference before it survives.
-- Not already seen (story dedup): a candidate whose URL or headline is already in the brief is dropped.
-
-A candidate that fails any check is discarded, not softened. This is COG's verification-first rule applied inside the loop: never let an item in on the agent's own "this looks recent enough."
-
-**Termination conditions (layered):**
-- **Goal met:** target item count reached for the interest area.
-- **Hard cap:** stop after ~5 searches per interest area.
-- **No-progress:** 2 consecutive searches surface nothing new (after dedup) → emit the "No significant news found" block (see Handle Special Cases) and move on. Never backfill with older or fabricated news.
-- **Budget guard:** overall fetch budget across all areas.
-
-**Patterns:** evaluator-optimizer (each item scored against the verifier) + reflect-retry (a failed search informs the next query) + orchestrator-workers (team mode).
-
-**In-loop context:** retain source references through the summarisation check; save afterwards.
-
-## Integration with Other Skills
-
-### Follow-up Actions
-After daily brief, suggest:
-- **braindump skill** - Capture thoughts sparked by news
-- **weekly-checkin skill** - Reflect on news patterns over the week
-- Project-specific analysis if news impacts active projects
-
-## Performance Metrics
-
-### Verification Quality
-- Source Credibility Score: Average credibility rating of sources used
-- Fact Accuracy Rate: Percentage of facts that remain accurate over time
-- Cross-Reference Rate: Percentage of claims verified through multiple sources
-- Date Accuracy: 100% compliance with 7-day freshness requirement (MANDATORY)
-
-### Relevance Quality
-- User Engagement: Percentage of news items user finds valuable
-- Analytical Value: Implications follow from the reported evidence
-- Strategic Value: User assessment of strategic importance
-- Timing Relevance: How well news timing aligns with user needs
-
-## Learning and Adaptation
-
-### Interest Profile Refinement
-- Monitor which news items user finds most valuable
-- Incorporate user feedback on relevance and importance
-- Identify patterns in user interest evolution
-- Anticipate interest changes based on project evolution
-
-### Source Quality Learning
-- Track accuracy of different sources over time
-- Build understanding of source reliability patterns
-- Learn to identify and account for source bias patterns
-- Continuously improve source selection criteria
-
-### Relevance Algorithm Improvement
-- Improve ability to predict news impact on user
-- Learn optimal framing for different types of news
-- Better understanding of user's strategic context
-- Improve identification of actionable news items
-
-## Success Criteria
-- All news within 7-day window (100% compliance)
-- All sources verified and linked
-- User finds briefing relevant and actionable
-- Confidence levels clearly stated
-- Implications and recommendations follow from the findings
-
-## Philosophy
-
-The daily brief skill embodies COG's verification-first approach:
-- No AI hallucinations - everything sourced and verified
-- Transparency in confidence levels
-- Explicit uncertainty when information can't be verified
-- User empowered to make informed decisions based on reliable intelligence

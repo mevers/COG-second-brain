@@ -79,7 +79,7 @@ This document defines the available commands/skills for AI agents interacting wi
 
 ### /daily-brief
 
-**Description:** Generate personalized news intelligence with verified sources (7-day freshness requirement).
+**Description:** Generate sourced daily briefs across personal interests, professional developments and business intelligence.
 
 **Triggers:**
 - `/daily-brief`
@@ -89,13 +89,13 @@ This document defines the available commands/skills for AI agents interacting wi
 - "morning brief"
 - "daily news"
 
-**Purpose:** Find verified, relevant news for personalized daily briefings with strict verification standards and strategic relevance analysis tailored to user's specific interests and projects.
+**Purpose:** Help the user learn, stay informed and recognise developments affecting their work, guided by their profile, interests and projects.
 
 **What it does:**
 1. Reads user interests from `config/MY-INTERESTS.md`
 2. Searches for news within last 7 days only
 3. Verifies sources with credibility assessment (Tier 1/2/3)
-4. Analyzes strategic relevance to user's role and projects
+4. Explains learning value and supported implications for roles and projects
 5. Identifies opportunities and threats
 6. Generates comprehensive briefing with sources
 
@@ -103,9 +103,9 @@ This document defines the available commands/skills for AI agents interacting wi
 
 **Key features:**
 - All news must be from last 7 days (mandatory)
-- Minimum 2 credible sources per claim
+- One credible source may suffice for attributed reporting; seek independent evidence for disputed claims and consequential recommendations
 - Confidence levels explicitly stated
-- Action items and recommendations included
+- Actions and recommendations included when supported; existing brief template retained
 
 ---
 

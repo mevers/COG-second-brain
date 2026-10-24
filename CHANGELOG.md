@@ -2,6 +2,13 @@
 
 All notable changes to COG (Cognition + Obsidian + Git) will be documented in this file.
 
+## [4.0.3] - 2026-10-24
+
+### Fixed
+
+- Improve daily-brief discovery with independent searches, preferred-source checks and regional coverage.
+- Clarify relevance, ranking and source evidence for personal and professional briefs; replace confidence ratings with evidence limits.
+
 ## [4.0.2] - 2026-10-16
 
 ### Fixed
