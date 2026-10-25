@@ -59,7 +59,7 @@ Transform raw thoughts into strategic intelligence through quick capture, system
 
 ### 2. Domain Classification
 
-Split unrelated subjects into separate notes; do not treat the submission as one document. Keep a connected thought together. URLs use url-dump; retain distinct personal observations as linked braindumps. If a primary home cannot be determined, leave the input pending with a reason.
+Split unrelated subjects into separate notes; do not treat the submission as one document. Keep a connected thought together. URLs and their annotations use url-dump; retain distinct personal observations as linked braindumps. If a primary home cannot be determined, leave the input pending with a reason.
 
 Ask user to classify or auto-detect based on content:
 
